@@ -1,0 +1,292 @@
+{
+  "custom": {},
+  "params": {
+    "enabled": true,
+    "icon": "novotek_icons/calendar-todo-line",
+    "isFrom": false,
+    "isTo": false,
+    "label": {
+      "display": true,
+      "value": "Label"
+    },
+    "maxTime": "",
+    "message": {
+      "display": true,
+      "value": "Petite aide ou erreur"
+    },
+    "minTime": "",
+    "placeholder": "Text...",
+    "value": null
+  },
+  "propConfig": {
+    "params.enabled": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isFrom": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.isTo": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.maxTime": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.message": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.minTime": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.placeholder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 98
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.label.display"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "typo/text_md typo/weight/bold",
+            "key": "value"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon_right"
+            },
+            "position": {
+              "basis": "20px",
+              "display": false,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icon"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "#3d46f2",
+              "style": {
+                "position": "absolute",
+                "right": "12px",
+                "width": "20px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "FromToOn"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "struct": {
+                      "isFrom": "{view.params.isFrom}",
+                      "isTo": "{view.params.isTo}"
+                    },
+                    "waitOnAll": true
+                  },
+                  "transforms": [
+                    {
+                      "code": "\tis_from \u003d value[\"isFrom\"]\n\tis_to \u003d value[\"isTo\"]\n\n\tif not is_from and not is_to:\n\t\treturn \"On :\"\n\tif is_to:\n\t\treturn \"To :\"\n\tif is_from:\n\t\treturn \"From :\"\n",
+                      "type": "script"
+                    }
+                  ],
+                  "type": "expr-struct"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "left": "16px",
+                "position": "absolute",
+                "width": "auto"
+              },
+              "textStyle": {
+                "classes": "colors/text/grey400 typo/text_md typo/weight/regular"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "DateTimeInput"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.maxDate": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.maxTime"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.minDate": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.minTime"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.placeholder": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.placeholder"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "format": "ll",
+              "inputProps": {
+                "style": {
+                  "border": "none",
+                  "paddingLeft": "54px",
+                  "textAlign": "left"
+                }
+              },
+              "locale": "fr",
+              "pickerType": "time",
+              "style": {
+                "left": "120px",
+                "position": "absolute",
+                "width": "20px"
+              }
+            },
+            "type": "ia.input.date-time-input"
+          }
+        ],
+        "meta": {
+          "name": "section_input"
+        },
+        "position": {
+          "basis": "60px",
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "style": {
+            "marginTop": "4px",
+            "overflow": "hidden",
+            "padding": "2px",
+            "position": "relative"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Description"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.message.display"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.message.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "typo/text_sm typo/weight/regular colors/text/grey500",
+            "marginTop": "4px"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

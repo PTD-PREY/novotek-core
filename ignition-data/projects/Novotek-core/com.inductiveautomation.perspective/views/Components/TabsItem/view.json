@@ -1,0 +1,204 @@
+{
+  "custom": {},
+  "params": {
+    "backgroundColor": "",
+    "icon": "novotek_icons/apps-2-line",
+    "label": "Text",
+    "selected": false,
+    "textColor": ""
+  },
+  "propConfig": {
+    "params.backgroundColor": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.textColor": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 44,
+      "width": 160
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.basis": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "transforms": [
+                {
+                  "fallback": "16px",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "",
+                      "output": 0
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.textColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "colors/text/primary500"
+                    },
+                    {
+                      "input": false,
+                      "output": "colors/text/grey500"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "typo/text_md typo/weight/bold colors/text/primary500"
+                    },
+                    {
+                      "input": false,
+                      "output": "typo/text_md typo/weight/regular colors/text/grey500"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.textColor"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {}
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "struct": {
+              "selected": "{view.params.selected}",
+              "textColor": "{view.params.textColor}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\ttemp_class \u003d \"colors/border/{color} borders/borderBottom\" if value[\"selected\"] else \"colors/border/grey200 borders/borderBottom\"\n\tcolor \u003d value[\"textColor\"] if value[\"textColor\"] else \"primary500\"\n\treturn temp_class.format(color \u003d color.replace(\"-\",\"\"))",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "alignItems": "center",
+      "justify": "center",
+      "style": {
+        "gap": "8px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

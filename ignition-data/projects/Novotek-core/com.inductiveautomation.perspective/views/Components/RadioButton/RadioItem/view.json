@@ -1,0 +1,143 @@
+{
+  "custom": {},
+  "params": {
+    "icon": "",
+    "label": "",
+    "position": "middle",
+    "radioGroupName": "",
+    "selected": false
+  },
+  "propConfig": {
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.position": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.radioGroupName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 109
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tpayload \u003d {\n\t\t\"radio_group_name\": self.view.params.radioGroupName,\n\t \t\"label\": self.view.params.label\n\t}\n\n\tsystem.perspective.sendMessage(\"SelectRadioGroupInstance\", payload\u003dpayload)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.image.icon.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.icon"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.borderRadius": {
+            "binding": {
+              "config": {
+                "path": "view.params.position"
+              },
+              "transforms": [
+                {
+                  "fallback": "0px",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "first",
+                      "output": "4px 0 0 4px"
+                    },
+                    {
+                      "input": "last",
+                      "output": "0 4px 4px 0"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": "typo/text_md typo/weight/regular inputs/radioItemUnselected",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "typo/text_md typo/weight/regular inputs/radioItemSelected"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "icon": {}
+          },
+          "style": {}
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

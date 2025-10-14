@@ -1,0 +1,10 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "--background",
+      "color": "--black",
+      "marginTop": "64px",
+      "padding": "24px 32px"
+    }
+  }
+}

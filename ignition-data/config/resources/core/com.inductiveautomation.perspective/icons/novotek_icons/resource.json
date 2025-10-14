@@ -1,0 +1,21 @@
+{
+  "scope": "A",
+  "description": "novotek icons",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json",
+    "backupConfig.json",
+    "novotek_icons.svg"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "api-token:admin-api:172.20.0.1",
+      "timestamp": "2025-09-03T13:40:39Z"
+    },
+    "uuid": "26d5e2a0-ff5a-443e-a866-2dae8cb4e8f4",
+    "lastModificationSignature": "3ab3135962e509f4a8ead6bc7389df02149d46898a2504a1a583ba262eb85f38",
+    "enabled": true
+  }
+}

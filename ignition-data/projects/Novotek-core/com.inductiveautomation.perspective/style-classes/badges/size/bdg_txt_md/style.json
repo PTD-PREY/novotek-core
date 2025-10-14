@@ -1,0 +1,11 @@
+{
+  "base": {
+    "style": {
+      "fontFamily": "Helvetica",
+      "fontSize": "14px",
+      "fontWeight": "normal",
+      "lineHeight": "21px",
+      "padding": "6px 12px"
+    }
+  }
+}

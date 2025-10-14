@@ -1,0 +1,8 @@
+{
+  "base": {
+    "style": {
+      "borderStyle": "solid",
+      "borderWidth": "1px"
+    }
+  }
+}

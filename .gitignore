@@ -1,0 +1,33 @@
+﻿﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+# Visual Studio
+.vscode/
+.vs/
+*.code-workspace
+
+# Auto-generated files
+Debug/
+DebugPublic/
+Release/
+ReleasePublic/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og$/
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# SQL Server project extension files
+*.dbmdl
+*.jfm
+
+# Ignition
+.resources/

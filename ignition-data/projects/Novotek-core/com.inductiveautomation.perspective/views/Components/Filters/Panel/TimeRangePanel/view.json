@@ -1,0 +1,403 @@
+{
+  "custom": {},
+  "params": {
+    "dateFrom": "",
+    "dateTo": ""
+  },
+  "propConfig": {
+    "params.dateFrom": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.dateTo": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 400,
+      "width": 540
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "FromInput"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.params.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.dateFrom"
+                  },
+                  "type": "property"
+                },
+                "persistent": true
+              }
+            },
+            "props": {
+              "params": {
+                "enabled": true,
+                "label": {
+                  "display": true,
+                  "value": "COMMON_FROM"
+                },
+                "message": {
+                  "display": false,
+                  "value": ""
+                },
+                "value": ""
+              },
+              "path": "Components/Inputs/Datetime"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "16px",
+              "shrink": 0
+            },
+            "props": {
+              "path": "novotek_icons/arrow-right-line",
+              "style": {
+                "classes": "colors/text/grey500",
+                "marginBottom": "14px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "ToInput"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.params.value": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.dateTo"
+                  },
+                  "type": "property"
+                },
+                "persistent": true
+              }
+            },
+            "props": {
+              "params": {
+                "enabled": true,
+                "label": {
+                  "display": true,
+                  "value": "COMMON_TO"
+                },
+                "message": {
+                  "display": false,
+                  "value": ""
+                },
+                "value": ""
+              },
+              "path": "Components/Inputs/Datetime"
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "InputsSection"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "flex-end",
+          "style": {
+            "gap": "16px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tpayloadSend \u003d \"currentWeek\"\n\n\tsystem.perspective.sendMessage(\"FilterTimeRangeClicked\", payload\u003dpayloadSend)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "CurrentWeek"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.params.selected": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "from": "{view.params.dateFrom}",
+                          "to": "{view.params.dateTo}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\timport datetime\n\t\n\trangeDay_start \u003d datetime.timedelta(days\u003ddatetime.datetime.today().weekday())\n\trangeDay_end \u003d datetime.timedelta(days\u003d(6-datetime.datetime.today().weekday()))\n\t\n\tstartWeek \u003d datetime.date.today() - rangeDay_start\n\tendWeek \u003d datetime.date.today() + rangeDay_end\n\t\n\treturn (value[\u0027from\u0027] \u003d\u003d startWeek.strftime(\"%d/%m/%Y\")) and (value[\u0027to\u0027] \u003d\u003d endWeek.strftime(\"%d/%m/%Y\"))\n\t",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "activatedEvent": false,
+                    "justify": "center",
+                    "label": "COMMON_CURRENT_WEEK",
+                    "size": "md",
+                    "style": "primary"
+                  },
+                  "path": "Components/Checkbox/CheckboxVariant"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tpayloadSend \u003d \"previousWeek\"\n\n\tsystem.perspective.sendMessage(\"FilterTimeRangeClicked\", payload\u003dpayloadSend)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "PreviousWeek"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.params.selected": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "from": "{view.params.dateFrom}",
+                          "to": "{view.params.dateTo}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\timport datetime\n\t\n\trangeDay_start \u003d datetime.timedelta(days\u003d(datetime.datetime.today().weekday() + 7))\n\trangeDay_end \u003d datetime.timedelta(days\u003d(datetime.datetime.today().weekday() +1))\n\t\n\tstartWeek \u003d datetime.date.today() - rangeDay_start\n\tendWeek \u003d datetime.date.today() - rangeDay_end\n\t\n\treturn (value[\u0027from\u0027] \u003d\u003d startWeek.strftime(\"%d/%m/%Y\")) and (value[\u0027to\u0027] \u003d\u003d endWeek.strftime(\"%d/%m/%Y\"))\n\t",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "activatedEvent": false,
+                    "justify": "center",
+                    "label": "COMMON_PREVIOUS_WEEK",
+                    "size": "md",
+                    "style": "primary"
+                  },
+                  "path": "Components/Checkbox/CheckboxVariant"
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "WeekSection"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": "16px"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tpayloadSend \u003d \"currentMonth\"\n\n\tsystem.perspective.sendMessage(\"FilterTimeRangeClicked\", payload\u003dpayloadSend)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "CurrentMonth"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.params.selected": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "from": "{view.params.dateFrom}",
+                          "to": "{view.params.dateTo}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\timport datetime\n\timport calendar\n\t\n\tcurrentYear \u003d datetime.date.today().year\n\tcurrentMonth \u003d datetime.date.today().month\n\t\n\tlastDayOfMonth \u003d calendar.monthrange(currentYear, currentMonth)[1]\n\t\n\tstartWeek \u003d datetime.date(currentYear, currentMonth, 1)\n\tendWeek \u003d datetime.date(currentYear, currentMonth, lastDayOfMonth)\n\t\n\treturn (value[\u0027from\u0027] \u003d\u003d startWeek.strftime(\"%d/%m/%Y\")) and (value[\u0027to\u0027] \u003d\u003d endWeek.strftime(\"%d/%m/%Y\"))",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "activatedEvent": false,
+                    "justify": "center",
+                    "label": "COMMON_CURRENT_MONTH",
+                    "size": "md",
+                    "style": "primary"
+                  },
+                  "path": "Components/Checkbox/CheckboxVariant"
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "events": {
+                  "dom": {
+                    "onClick": {
+                      "config": {
+                        "script": "\tpayloadSend \u003d \"previousMonth\"\n\n\tsystem.perspective.sendMessage(\"FilterTimeRangeClicked\", payload\u003dpayloadSend)"
+                      },
+                      "scope": "G",
+                      "type": "script"
+                    }
+                  }
+                },
+                "meta": {
+                  "name": "PreviousMonth"
+                },
+                "position": {
+                  "grow": 1,
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.params.selected": {
+                    "binding": {
+                      "config": {
+                        "struct": {
+                          "from": "{view.params.dateFrom}",
+                          "to": "{view.params.dateTo}"
+                        },
+                        "waitOnAll": true
+                      },
+                      "transforms": [
+                        {
+                          "code": "\timport datetime\n\timport calendar\n\t\n\tcurrentYear \u003d datetime.date.today().year\n\tcurrentMonth \u003d datetime.date.today().month\n\t\n\tlastDayOfMonth \u003d calendar.monthrange(currentYear, currentMonth)[1]\n\trangeMonth \u003d datetime.timedelta(days\u003dlastDayOfMonth)\n\t\n\tpreviousDate \u003d datetime.date.today() - rangeMonth\n\tlastDayOfPreviousMonth \u003d calendar.monthrange(previousDate.year, previousDate.month)[1]\n\t\n\tstartWeek \u003d datetime.date(previousDate.year, previousDate.month, 1)\n\tendWeek \u003d datetime.date(previousDate.year, previousDate.month, lastDayOfPreviousMonth)\n\t\n\treturn (value[\u0027from\u0027] \u003d\u003d startWeek.strftime(\"%d/%m/%Y\")) and (value[\u0027to\u0027] \u003d\u003d endWeek.strftime(\"%d/%m/%Y\"))",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "expr-struct"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "activatedEvent": false,
+                    "justify": "center",
+                    "label": "COMMON_PREVIOUS_MONTH",
+                    "size": "md",
+                    "style": "primary"
+                  },
+                  "path": "Components/Checkbox/CheckboxVariant"
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "MonthSection"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": "16px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "ButtonsSection"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "borders/borderTop colors/border/grey100",
+            "gap": "16px",
+            "paddingTop": "16px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderRadius": "4px",
+        "classes": "colors/back/background borders/borderAll colors/border/grey200 effects/shadows_md",
+        "gap": "24px",
+        "height": "fit-content",
+        "margin": "8px",
+        "padding": "16px 24px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--background)",
+      "borderStyle": "none",
+      "color": "--black",
+      "padding": "2px 4px"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "var(--primary-50)",
+        "color": "var(--primary-500)",
+        "cursor": "pointer"
+      }
+    }
+  ]
+}

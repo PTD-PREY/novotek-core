@@ -1,0 +1,192 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 920,
+      "width": 1900
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "EmbeddedSite"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.params.data.name": {
+                    "persistent": true
+                  }
+                },
+                "props": {
+                  "params": {
+                    "data": {
+                      "class": "site",
+                      "name": "Martillac",
+                      "pathIcon": "novotek_icons/building-3-line",
+                      "type": "Usine"
+                    },
+                    "selectionEnabled": false
+                  },
+                  "path": "Components/PlantModelItem",
+                  "style": {
+                    "overflow": "hidden"
+                  }
+                },
+                "type": "ia.display.view"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "gap": "72px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "image": {
+                    "height": 20,
+                    "icon": {
+                      "path": "novotek_icons/add-fill"
+                    },
+                    "width": 20
+                  },
+                  "style": {
+                    "classes": "buttons/primary_default buttons/size/btn_txt_md"
+                  },
+                  "text": "Action"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "time"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "dateFormat(now(), \"HH:mm\")"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "typo/text_lg typo/weight/bold colors/text/primary900"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "flex-end",
+              "style": {
+                "gap": "32px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "classes": "colors/back/background effects/shadows_md",
+            "padding": "16px 40px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "content"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "gap": "24px",
+            "padding": "0 40px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "struct": {
+              "path": "{page.props.path}",
+              "width": "{page.props.dimensions.viewport.width}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\tif value[\u0027width\u0027] \u003c 1000:\n\t\treturn \"container/page_tablet\"\n\telse:\n\t\treturn \"container/page_desktop\"",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": "32px",
+        "padding": "0 0 32px 0"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

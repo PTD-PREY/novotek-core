@@ -1,0 +1,52 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 100
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "32px",
+          "display": false,
+          "grow": 1
+        },
+        "props": {
+          "text": "Mon en-tête"
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "EmbeddedView"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "path": "Toast/ToastContainer",
+          "style": {
+            "classes": "toast"
+          }
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "top": "0px",
+        "zIndex": 3000
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "base": {
+    "style": {
+      "boxShadow": "0px 0px 20px 0px rgba(16, 24, 40, 0.10), 0px 0px 20px 0px rgba(16, 24, 40, 0.10)"
+    }
+  }
+}

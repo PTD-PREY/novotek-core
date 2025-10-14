@@ -1,0 +1,279 @@
+{
+  "custom": {},
+  "params": {
+    "message": {
+      "description": "I\u0027m a little description",
+      "title": "I\u0027m a \u003cb\u003etitle\u003c/b\u003e"
+    },
+    "messageType": "info",
+    "new": 1,
+    "uuid": "value"
+  },
+  "propConfig": {
+    "params.message": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.messageType": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.new": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.uuid": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 100,
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "StatusIcon"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.messageType"
+              },
+              "transforms": [
+                {
+                  "fallback": "novotek_icons/information-line\"",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "error",
+                      "output": "novotek_icons/error-warning-line"
+                    },
+                    {
+                      "input": "warning",
+                      "output": "novotek_icons/alert-line"
+                    },
+                    {
+                      "input": "success",
+                      "output": "novotek_icons/checkbox-circle-line"
+                    },
+                    {
+                      "input": "info",
+                      "output": "novotek_icons/information-line"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.params.messageType"
+              },
+              "transforms": [
+                {
+                  "fallback": "novotek_icons/information-line\"",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "error",
+                      "output": "colors/text/error500"
+                    },
+                    {
+                      "input": "warning",
+                      "output": "colors/text/warning500"
+                    },
+                    {
+                      "input": "success",
+                      "output": "colors/text/success500"
+                    },
+                    {
+                      "input": "info",
+                      "output": "colors/text/primary500"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Markdown"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.source": {
+                "binding": {
+                  "config": {
+                    "expression": "translate({view.params.message.title}, {session.props.locale})"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "markdown": {
+                "escapeHtml": false
+              },
+              "style": {
+                "classes": "typo/text_md typo/weight/regular"
+              }
+            },
+            "type": "ia.display.markdown"
+          },
+          {
+            "meta": {
+              "name": "Description"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.message.description"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_sm typo/weight/regular colors/text/grey500"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "TextSection"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "classes": "colors/border/grey200 borders/borderRight",
+            "paddingRight": "16px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\"TOAST_DELETE_BY_UUID\", payload \u003d {\"uuid\": self.view.params.uuid})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "40px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "novotek_icons/close-fill",
+          "style": {
+            "classes": "buttons/size/btn_icn_md colors/text/grey400",
+            "cursor": "pointer"
+          }
+        },
+        "type": "ia.display.icon"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.opacity": {
+        "binding": {
+          "config": {
+            "path": "view.params.messageType"
+          },
+          "transforms": [
+            {
+              "fallback": 1,
+              "inputType": "scalar",
+              "mappings": [
+                {
+                  "input": "",
+                  "output": 0
+                }
+              ],
+              "outputType": "scalar",
+              "type": "map"
+            }
+          ],
+          "type": "property"
+        }
+      },
+      "props.style.transition-duration": {
+        "binding": {
+          "config": {
+            "path": "view.params.new"
+          },
+          "transforms": [
+            {
+              "fallback": "0s",
+              "inputType": "scalar",
+              "mappings": [
+                {
+                  "input": 1,
+                  "output": "0.5s"
+                }
+              ],
+              "outputType": "scalar",
+              "type": "map"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "alignItems": "center",
+      "style": {
+        "borderRadius": "4px",
+        "classes": "colors/back/background effects/shadows_lg colors/border/grey200 borders/borderAll",
+        "gap": "16px",
+        "height": "fit-content",
+        "margin": "8px 16px",
+        "overflow": "hidden",
+        "padding": "16px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

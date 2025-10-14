@@ -1,0 +1,147 @@
+{
+  "custom": {},
+  "params": {
+    "activatedEvent": true,
+    "justify": "start",
+    "label": "Label",
+    "selected": false,
+    "size": "md",
+    "style": "primary"
+  },
+  "propConfig": {
+    "params.activatedEvent": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.justify": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.size": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.style": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 51,
+      "width": 206
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.view.params.activatedEvent :\n\t\tif self.view.params.selected:\n\t\t\tself.view.params.selected \u003d False\n\t\telse:\n\t\t\tself.view.params.selected \u003d True"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.image.icon.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "overlayOptOut": true,
+              "transforms": [
+                {
+                  "fallback": "",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "novotek_icons/check-line"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.justify": {
+            "binding": {
+              "config": {
+                "path": "view.params.justify"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "selected": "{view.params.selected}",
+                  "size": "{view.params.size}",
+                  "style": "{view.params.style}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tif value[\u0027selected\u0027] :\n\t\treturn \"buttons/\" + value[\u0027style\u0027] + \"_flat buttons/size/btn_txt_\" + value[\u0027size\u0027]\n\telse:\n\t\treturn \"buttons/grey_flat buttons/size/btn_txt_\" + value[\u0027size\u0027]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "height": 20,
+            "icon": {},
+            "width": 20
+          },
+          "style": {},
+          "textStyle": {
+            "marginLeft": "8px"
+          }
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "padding": "1px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,365 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 920,
+      "width": 1900
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "typo/heading_1 typo/weight/bold"
+              },
+              "text": "Template 1"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "image": {
+                    "height": 20,
+                    "icon": {
+                      "color": "var(--primary-50)",
+                      "path": "novotek_icons/add-fill"
+                    },
+                    "width": 20
+                  },
+                  "style": {
+                    "classes": "buttons/primary_default buttons/size/btn_txt_md"
+                  },
+                  "text": "Action"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "time"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "dateFormat(now(), \"HH:mm\")"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "typo/text_lg typo/weight/bold colors/text/primary900"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "flex-end",
+              "style": {
+                "gap": "32px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "CategoryPicker"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "params": {
+                "header": {
+                  "icon": "novotek_icons/apps-2-line",
+                  "isOpen": false,
+                  "title": "Catégories"
+                },
+                "panelPosition": {
+                  "left": "104px",
+                  "top": "168px"
+                }
+              },
+              "path": "Components/Filters/CategoryPicker"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "separator_0"
+            },
+            "position": {
+              "basis": "1px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "colors/back/grey100",
+                "height": "100%"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "TimeRange"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "params": {
+                "header": {
+                  "icon": "novotek_icons/calendar-todo-line",
+                  "isOpen": false,
+                  "title": "Time range"
+                },
+                "panelPosition": {
+                  "left": "688px",
+                  "top": "168px"
+                }
+              },
+              "path": "Components/Filters/TimeRangePicker"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "separator"
+            },
+            "position": {
+              "basis": "1px"
+            },
+            "props": {
+              "style": {
+                "classes": "colors/back/grey100",
+                "height": "100%"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "BoutonRechercher",
+              "tooltip": {
+                "text": "Appliquez au moins un filtre"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.tooltip.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "!{this.props.enabled}"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "color": "var(--primary-900)",
+                  "path": "novotek_icons/filter-3-fill"
+                },
+                "style": {
+                  "margin": 10,
+                  "padding": 10
+                }
+              },
+              "style": {
+                "classes": "buttons/primary_blank buttons/size/btn_txt_sm"
+              },
+              "text": "Filtrer"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "meta": {
+              "name": "BoutonDelete",
+              "tooltip": {
+                "text": "Appliquez au moins un filtre"
+              }
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "meta.tooltip.enabled": {
+                "binding": {
+                  "config": {
+                    "expression": "!{this.props.enabled}"
+                  },
+                  "enabled": false,
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "color": "var(--primary-900)",
+                  "path": "novotek_icons/delete-bin-2-line"
+                },
+                "style": {
+                  "margin": 10,
+                  "padding": 10
+                }
+              },
+              "style": {
+                "classes": "buttons/primary_blank buttons/size/btn_icn_sm"
+              },
+              "text": "Réinitialiser"
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "filersBar"
+        },
+        "position": {
+          "basis": "72px",
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "flex-end",
+          "style": {
+            "borderRadius": "4px",
+            "classes": "colors/border/grey100 colors/back/background borders/borderAll",
+            "gap": "16px",
+            "overflow": "hidden",
+            "padding": "0 16px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "bodyStyle": {
+            "scrollbarWidth": "thin"
+          },
+          "cells": {
+            "style": {
+              "classes": "table/cells typo/text_md typo/weight/regular"
+            }
+          },
+          "emptyMessage": {
+            "style": {
+              "classes": "typo/text_md typo/weight/regular colors/text/grey500"
+            }
+          },
+          "footerGroupStyle": {
+            "classes": "table/table_header"
+          },
+          "footerStyle": {
+            "classes": "table/table_header"
+          },
+          "headerGroupStyle": {
+            "boxShadow": "none"
+          },
+          "headerStyle": {
+            "classes": "table/table_header typo/text_sm typo/weight/bold colors/text/black",
+            "padding": "16px 12px 4px 12px"
+          },
+          "pager": {
+            "style": {
+              "classes": "table/table_footer"
+            }
+          },
+          "style": {
+            "classes": "table/table",
+            "scrollbarColor": "var(--grey-300) var(--background)",
+            "scrollbarWidth": "thin"
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "struct": {
+              "path": "{page.props.path}",
+              "width": "{page.props.dimensions.viewport.width}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\tif value[\u0027width\u0027] \u003c 1000:\n\t\treturn \"container/page_tablet\"\n\telse:\n\t\treturn \"container/page_desktop\"",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": "24px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 1080,
+      "width": 228
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "32px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.style.classes": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.theme"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "colors/text/black",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": "novotek-dark",
+                          "output": "colors/text/white"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "path": "novotek_icons/premier-tech",
+              "style": {
+                "cursor": "pointer"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "text": "Suivi des licences"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "events": {
+          "dom": {
+            "onClick": [
+              {
+                "config": {
+                  "id": "open_menu_desktop",
+                  "type": "close"
+                },
+                "scope": "C",
+                "type": "dock"
+              },
+              {
+                "config": {
+                  "id": "close_menu_desktop",
+                  "type": "open"
+                },
+                "scope": "C",
+                "type": "dock"
+              }
+            ]
+          }
+        },
+        "meta": {
+          "name": "top"
+        },
+        "position": {
+          "basis": "48px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "cursor": "pointer",
+            "gap": "8px",
+            "overflow": "hidden",
+            "padding": "0px 8px 0px 8px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "separator"
+        },
+        "position": {
+          "basis": "1px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "colors/back/grey100"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "expression": "{[Config]Navigation}"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value[\"navigationOpen\"]",
+                  "type": "script"
+                }
+              ],
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "alignContent": "flex-start",
+          "direction": "column",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "path": "Components/Menu/NavItemGroup",
+          "style": {
+            "gap": "32px",
+            "overflow": "hidden"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tcurrent_theme \u003d self.session.props.theme\n\n\tif current_theme \u003d\u003d \"novotek-light\":\n\t\tself.session.props.theme \u003d \"novotek-dark\"\n\telse:\n\t\tself.session.props.theme \u003d \"novotek-light\""
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "24px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "session.props.theme"
+              },
+              "transforms": [
+                {
+                  "fallback": "novotek_icons/sun-line",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": "novotek-light",
+                      "output": "novotek_icons/moon-line"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "color": "var(--grey-400)",
+          "style": {
+            "cursor": "pointer",
+            "width": "auto"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "separator_0"
+        },
+        "position": {
+          "basis": "1px",
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "colors/back/grey100"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Account"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.params.label": {
+                "binding": {
+                  "config": {
+                    "path": "session.props.auth.user.userName"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "params": {
+                "destination": "/fake_logout",
+                "icon": "novotek_icons/user-line",
+                "iconOnly": false
+              },
+              "path": "Components/Menu/NavItem",
+              "useDefaultViewHeight": true
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {},
+                  "scope": "C",
+                  "type": "logout"
+                }
+              }
+            },
+            "meta": {
+              "name": "Logout"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "destination": "/fake_logout",
+                "icon": "novotek_icons/logout-circle-line",
+                "iconOnly": false,
+                "label": "Déconnexion"
+              },
+              "path": "Components/Menu/NavItem",
+              "useDefaultViewHeight": true
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "bottom"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "direction": "column",
+          "justify": "flex-end",
+          "style": {
+            "gap": "8px",
+            "overflow": "hidden",
+            "width": "500px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "colors/back/background colors/border/grey100 borders/borderRight effects/md_dark",
+        "gap": "16px",
+        "overflow": "hidden",
+        "padding": "16px 8px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

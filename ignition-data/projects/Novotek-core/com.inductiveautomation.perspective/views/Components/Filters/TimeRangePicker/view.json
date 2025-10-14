@@ -1,0 +1,223 @@
+{
+  "custom": {
+    "indicatorDisplay": false,
+    "isOpen": false
+  },
+  "params": {
+    "dateFrom": "",
+    "dateTo": "",
+    "header": {
+      "icon": "novotek_icons/filter-3-line",
+      "isOpen": false,
+      "title": "Filter"
+    },
+    "panelPosition": {
+      "left": "0px",
+      "top": "80px"
+    }
+  },
+  "propConfig": {
+    "custom.indicatorDisplay": {
+      "binding": {
+        "config": {
+          "struct": {
+            "from": "{view.params.from}",
+            "to": "{view.params.to}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tif not value[\u0027from\u0027] and not value[\u0027to\u0027]:\n\t\treturn False\n\telse:\n\t\treturn True",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "custom.isOpen": {
+      "persistent": true
+    },
+    "params.dateFrom": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.dateTo": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.header": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.panelPosition": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 365,
+      "width": 501
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.view.custom.isOpen:\n\t\tself.view.custom.isOpen \u003d False\n\telse:\n\t\tself.view.custom.isOpen \u003d True"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FilterBase"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.icon": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.icon"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.indicator.display": {
+            "binding": {
+              "config": {
+                "path": "view.custom.indicatorDisplay"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.isOpen": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.isOpen"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.title": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "indicator": {
+              "icon": "novotek_icons/lightbulb-line"
+            }
+          },
+          "path": "Components/Filters/FilterBase"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "FilterPanel"
+        },
+        "position": {
+          "display": false,
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.custom.isOpen"
+              },
+              "type": "property"
+            },
+            "persistent": true
+          },
+          "props.params.dateFrom": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.dateFrom"
+              },
+              "type": "property"
+            },
+            "persistent": true
+          },
+          "props.params.dateTo": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.dateTo"
+              },
+              "type": "property"
+            },
+            "persistent": true
+          },
+          "props.style.left": {
+            "binding": {
+              "config": {
+                "path": "view.params.panelPosition.left"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.top": {
+            "binding": {
+              "config": {
+                "path": "view.params.panelPosition.top"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "dateFrom": "",
+            "dateTo": ""
+          },
+          "path": "Components/Filters/Panel/TimeRangePanel",
+          "style": {
+            "position": "fixed",
+            "zIndex": 99
+          },
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "position": "relative"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "FilterTimeRangeClicked",
+          "pageScope": true,
+          "script": "\timport datetime\n\t\n\tif payload \u003d\u003d \"currentWeek\":\n\t    rangeDay_start \u003d datetime.timedelta(days\u003ddatetime.datetime.today().weekday())\n\t    rangeDay_end \u003d datetime.timedelta(days\u003d(6 - datetime.datetime.today().weekday()))\n\t\n\t    startWeek \u003d datetime.date.today() - rangeDay_start\n\t    endWeek \u003d datetime.date.today() + rangeDay_end\n\t\n\t    self.view.params.dateFrom \u003d datetime.date(startWeek.year, startWeek.month, startWeek.day)\n\t    self.view.params.dateTo \u003d endWeek\n\t\n\telif payload \u003d\u003d \"previousWeek\":\n\t    rangeDay_start \u003d datetime.timedelta(days\u003ddatetime.datetime.today().weekday() + 7)\n\t    rangeDay_end \u003d datetime.timedelta(days\u003d(datetime.datetime.today().weekday() + 1))\n\t\n\t    startWeek \u003d datetime.date.today() - rangeDay_start\n\t    endWeek \u003d datetime.date.today() - rangeDay_end\n\t\n\t    self.view.params.dateFrom \u003d datetime.date(startWeek.year, startWeek.month, startWeek.day)\n\t    self.view.params.dateTo \u003d endWeek\n\t\n\telif payload \u003d\u003d \"currentMonth\":\n\t    today \u003d datetime.date.today()\n\t    startMonth \u003d today.replace(day\u003d1)\n\t    if today.month \u003d\u003d 12:\n\t        nextMonth \u003d today.replace(year\u003dtoday.year + 1, month\u003d1, day\u003d1)\n\t    else:\n\t        nextMonth \u003d today.replace(month\u003dtoday.month + 1, day\u003d1)\n\t    endMonth \u003d nextMonth - datetime.timedelta(days\u003d1)\n\t\n\t    self.view.params.dateFrom \u003d startMonth\n\t    self.view.params.dateTo \u003d endMonth\n\t\n\telif payload \u003d\u003d \"previousMonth\":\n\t    today \u003d datetime.date.today()\n\t    firstDay_currentMonth \u003d today.replace(day\u003d1)\n\t    lastDay_previousMonth \u003d firstDay_currentMonth - datetime.timedelta(days\u003d1)\n\t    start_previousMonth \u003d lastDay_previousMonth.replace(day\u003d1)\n\t\n\t    self.view.params.dateFrom \u003d start_previousMonth\n\t    self.view.params.dateTo \u003d lastDay_previousMonth",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

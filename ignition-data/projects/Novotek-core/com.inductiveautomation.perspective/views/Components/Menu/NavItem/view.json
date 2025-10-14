@@ -1,0 +1,160 @@
+{
+  "custom": {},
+  "params": {
+    "destination": "/",
+    "icon": "novotek_icons/todo-line",
+    "iconOnly": true,
+    "label": "",
+    "notification": false
+  },
+  "propConfig": {
+    "params.destination": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icon": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.iconOnly": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.notification": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 257
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tsystem.perspective.navigate(page \u003d self.view.params.destination)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.image.icon.color": {
+            "binding": {
+              "config": {
+                "expression": "if({page.props.path}!\u003d{view.params.destination}, \"var(--grey-400)\", \"var(--primary-500)\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.image.icon.path": {
+            "binding": {
+              "config": {
+                "expression": "{view.params.icon}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "expression": "if({page.props.path}!\u003d{view.params.destination}, \"navigation/navitem typo/text_md typo/weight/regular\", \"navigation/navitem_selected typo/text_md typo/weight/regular\")"
+              },
+              "type": "expr"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.iconOnly"
+              },
+              "transforms": [
+                {
+                  "code": "\tif self.view.params.iconOnly :\n\t\treturn \"\"\n\telse:\n\t\treturn self.view.params.label",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "icon": {},
+            "style": {
+              "padding": "4px"
+            }
+          },
+          "justify": "start",
+          "primary": false,
+          "style": {
+            "cursor": "pointer",
+            "minWidth": "260px"
+          },
+          "textStyle": {
+            "classes": "typo/text_md typo/weight/regular",
+            "margin": "0 8px",
+            "whiteSpace": "nowrap"
+          }
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "notification"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.notification"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "borderRadius": "40px",
+            "classes": "colors/back/error500",
+            "height": "12px",
+            "position": "absolute",
+            "right": 0,
+            "width": "12px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "overflow": "hidden",
+        "position": "relative"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

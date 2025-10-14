@@ -1,0 +1,301 @@
+{
+  "custom": {},
+  "params": {
+    "title": "value"
+  },
+  "propConfig": {
+    "params.title": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 490
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "title"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "typo/heading_6 typo/weight/bold colors/text/grey700"
+              },
+              "text": "Label"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "EmbeddedView"
+                },
+                "position": {
+                  "basis": "30px",
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.style.classes": {
+                    "binding": {
+                      "config": {
+                        "path": "this.props.params.label.text"
+                      },
+                      "transforms": [
+                        {
+                          "code": "\tif int(value) \u003e 0:\n\t\treturn \"badges/secondary_fill badges/shape/bdg_rounded badges/size/bdg_icn_sm\"\n\telse:\n\t\treturn \"badges/grey_fill badges/shape/bdg_rounded badges/size/bdg_icn_sm\"",
+                          "type": "script"
+                        }
+                      ],
+                      "type": "property"
+                    }
+                  }
+                },
+                "props": {
+                  "params": {
+                    "icons": {
+                      "left": {
+                        "display": false,
+                        "value": "novotek_icons/arrow-left-circle-line"
+                      },
+                      "right": {
+                        "display": false,
+                        "value": "novotek_icons/arrow-right-circle-line"
+                      }
+                    },
+                    "label": {
+                      "display": true,
+                      "text": 0
+                    }
+                  },
+                  "path": "Components/Badge",
+                  "style": {}
+                },
+                "type": "ia.display.view"
+              },
+              {
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "path": "novotek_icons/filter-3-fill"
+                    }
+                  },
+                  "style": {
+                    "classes": "buttons/primary_blank buttons/size/btn_icn_md"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              }
+            ],
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tif self.view.getChild(\"root\").custom.isOpen:\n\t\tself.view.getChild(\"root\").custom.isOpen \u003d False\n\telse:\n\t\tself.view.getChild(\"root\").custom.isOpen \u003d True"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "indicatorSection"
+            },
+            "position": {
+              "basis": "80px",
+              "shrink": 0
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "flex-end",
+              "style": {
+                "gap": "4px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "EmbeddedView"
+            },
+            "position": {
+              "basis": "260px",
+              "shrink": 0
+            },
+            "props": {
+              "params": {
+                "enabled": true,
+                "icons": {
+                  "left": {
+                    "display": true,
+                    "value": "novotek_icons/search-2-line"
+                  },
+                  "right": {
+                    "display": false,
+                    "value": ""
+                  }
+                },
+                "label": {
+                  "display": true,
+                  "value": "PDL"
+                },
+                "message": {
+                  "display": false,
+                  "value": ""
+                },
+                "placeholder": "Search by name...",
+                "unit": {
+                  "display": false,
+                  "value": "??"
+                },
+                "value": ""
+              },
+              "path": "Components/Inputs/Inputs_text"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "EmbeddedView_0"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "params": {
+                "icons": {
+                  "left": {
+                    "display": false,
+                    "value": ""
+                  },
+                  "right": {
+                    "display": false,
+                    "value": ""
+                  }
+                },
+                "label": {
+                  "display": true,
+                  "value": "Status"
+                },
+                "message": {
+                  "display": false,
+                  "value": ""
+                },
+                "multiSelect": true,
+                "options": [],
+                "placeholder": "Select status...",
+                "value": ""
+              },
+              "path": "Components/Inputs/Dropdown"
+            },
+            "type": "ia.display.view"
+          },
+          {
+            "meta": {
+              "name": "EmbeddedView_1"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "params": {
+                "icons": {
+                  "left": {
+                    "display": false,
+                    "value": ""
+                  },
+                  "right": {
+                    "display": false,
+                    "value": ""
+                  }
+                },
+                "label": {
+                  "display": true,
+                  "value": "Area"
+                },
+                "message": {
+                  "display": false,
+                  "value": ""
+                },
+                "multiSelect": true,
+                "options": [],
+                "placeholder": "Select status...",
+                "value": ""
+              },
+              "path": "Components/Inputs/Dropdown"
+            },
+            "type": "ia.display.view"
+          }
+        ],
+        "meta": {
+          "name": "filtersSection"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "parent.custom.isOpen"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "alignItems": "flex-start",
+          "style": {
+            "classes": "borders/borderBottom colors/border/grey200",
+            "gap": "32px",
+            "paddingBottom": "16px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "custom": {
+      "isOpen": false
+    },
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": "16px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

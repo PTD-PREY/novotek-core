@@ -1,0 +1,27 @@
+{
+  "base": {
+    "style": {
+      "color": "var(--primary-500)"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "color": "var(--primary-600)"
+      }
+    },
+    {
+      "pseudo": "active",
+      "style": {
+        "color": "var(--primary-700)"
+      }
+    },
+    {
+      "pseudo": "disabled",
+      "style": {
+        "color": "var(--grey-300)"
+      }
+    }
+  ]
+}

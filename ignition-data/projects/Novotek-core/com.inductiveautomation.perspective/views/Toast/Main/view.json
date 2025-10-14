@@ -1,0 +1,125 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027TOAST_ADD\u0027, payload\u003d{\"messageType\":\"info\", \"message\": {\"title\": \"I\u0027m a \u003cb\u003esuper title\u003c/b\u003e\", \"description\" : \"Lorem ...\" }})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "buttons/primary_flat buttons/size/btn_txt_md"
+          },
+          "text": "Add Info Toast"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027TOAST_ADD\u0027, payload\u003d{\"messageType\":\"success\", \"message\": {\"title\": \"I\u0027m a \u003cb\u003esuper title\u003c/b\u003e\", \"description\" : \"Lorem ...\" }})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_0"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "buttons/success_flat buttons/size/btn_txt_md"
+          },
+          "text": "Add Success Toast"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027TOAST_ADD\u0027, payload\u003d{\"messageType\":\"warning\", \"message\":  {\"title\": \"I\u0027m a \u003cb\u003esuper title\u003c/b\u003e\", \"description\" : \"Lorem ...\" }})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_1"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "buttons/warning_flat buttons/size/btn_txt_md"
+          },
+          "text": "Add Warning Toast"
+        },
+        "type": "ia.input.button"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tsystem.perspective.sendMessage(\u0027TOAST_ADD\u0027, payload\u003d{\"messageType\":\"error\", \"message\":  {\"title\": \"I\u0027m a \u003cb\u003esuper title\u003c/b\u003e\", \"description\" : \"Lorem ...\" }})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button_2"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "style": {
+            "classes": "buttons/error_flat buttons/size/btn_txt_md"
+          },
+          "text": "Add Error Toast"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "justify": "center",
+      "style": {
+        "gap": "16px",
+        "padding": "40px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

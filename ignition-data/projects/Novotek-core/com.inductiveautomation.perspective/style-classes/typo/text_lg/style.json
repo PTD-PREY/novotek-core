@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "fontFamily": "Helvetica",
+      "fontSize": "18px",
+      "lineHeight": "27px"
+    }
+  }
+}

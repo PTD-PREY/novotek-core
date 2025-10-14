@@ -1,0 +1,381 @@
+{
+  "custom": {},
+  "params": {
+    "enabled": true,
+    "icons": {
+      "left": {
+        "display": true,
+        "value": "novotek_icons/search-2-line"
+      },
+      "right": {
+        "display": true,
+        "value": "novotek_icons/information-line"
+      }
+    },
+    "label": {
+      "display": true,
+      "value": "Label"
+    },
+    "label2": {
+      "color": "",
+      "display": false,
+      "value": ""
+    },
+    "message": {
+      "display": true,
+      "value": "Petite aide ou erreur"
+    },
+    "placeholder": "Text...",
+    "unit": {
+      "display": false,
+      "value": "??"
+    },
+    "value": ""
+  },
+  "propConfig": {
+    "params.enabled": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.icons": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label2": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.message": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.placeholder": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.unit": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 98
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_md typo/weight/bold"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Label 2"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label2.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label2.value"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.textStyle.color": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label2.color"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_md typo/weight/bold colors/text/black",
+                "margin-left": "4px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "section_label"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "style": {
+            "overflow": "hidden",
+            "padding": "2px",
+            "position": "relative"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "TextField"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.enabled": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.enabled"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.placeholder": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.placeholder"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.style.paddingLeft": {
+                "binding": {
+                  "config": {
+                    "expression": "if({view.params.icons.left.display}, \"40px\", \"12px\")"
+                  },
+                  "type": "expr"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "bidirectional": true,
+                    "path": "view.params.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "deferUpdates": false,
+              "style": {
+                "classes": "effects/shadows_sm inputs/input_text typo/text_md"
+              }
+            },
+            "type": "ia.input.text-field"
+          },
+          {
+            "meta": {
+              "name": "Icon_left"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icons.left.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icons.left.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "#8c94a3",
+              "style": {
+                "left": "12px",
+                "position": "absolute",
+                "width": "20px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "Icon_right"
+            },
+            "position": {
+              "basis": "20px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icons.right.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.icons.right.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "color": "#3d46f2",
+              "style": {
+                "position": "absolute",
+                "right": "12px",
+                "width": "20px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "unit"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.unit.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.unit.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_md typo/weight/regular colors/text/primary500",
+                "position": "absolute",
+                "right": "12px",
+                "width": "20px"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "section_input"
+        },
+        "position": {
+          "basis": "45px"
+        },
+        "props": {
+          "alignItems": "center",
+          "style": {
+            "marginTop": "4px",
+            "overflow": "hidden",
+            "padding": "2px",
+            "position": "relative"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "Description"
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.message.display"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.message.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "typo/text_sm typo/weight/regular colors/text/grey500",
+            "marginTop": "4px"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

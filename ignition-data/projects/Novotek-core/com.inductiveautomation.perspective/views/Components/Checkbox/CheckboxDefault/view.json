@@ -1,0 +1,166 @@
+{
+  "custom": {},
+  "params": {
+    "description": {
+      "display": true,
+      "text": "I\u0027m a little description"
+    },
+    "selected": false,
+    "text": "Label"
+  },
+  "propConfig": {
+    "params.description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.text": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 59,
+      "width": 221
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Checkbox"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.selected": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.text"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "checkedIcon": {
+            "color": {
+              "disabled": "#667085",
+              "enabled": "#3d46f2"
+            },
+            "path": "novotek_icons/checkbox-fill",
+            "style": {
+              "classes": "colors/text/primary500"
+            }
+          },
+          "indeterminateIcon": {
+            "path": ""
+          },
+          "style": {
+            "classes": "typo/text_md typo/weight/regular inputs/checkbox"
+          },
+          "uncheckedIcon": {
+            "color": {
+              "disabled": "#667085",
+              "enabled": "#3d46f2"
+            },
+            "path": "novotek_icons/checkbox-blank-line",
+            "style": {
+              "classes": "colors/text/primary500"
+            }
+          }
+        },
+        "type": "ia.input.checkbox"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.view.params.selected :\n\t\tself.view.params.selected \u003d False\n\telse:\n\t\tself.view.params.selected \u003d True"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Description"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.params.description.display"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.cursor": {
+            "binding": {
+              "config": {
+                "path": "../Checkbox.props.enabled"
+              },
+              "transforms": [
+                {
+                  "fallback": "default",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "pointer"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.description.text"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "classes": "typo/text_sm typo/weight/regular colors/text/grey500",
+            "paddingLeft": "32px"
+          }
+        },
+        "type": "ia.display.label"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "inputs/checkbox"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

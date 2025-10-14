@@ -1,0 +1,106 @@
+{
+  "custom": {
+    "toasts": []
+  },
+  "params": {},
+  "propConfig": {
+    "custom.toasts": {
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 0,
+      "width": 375
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "ToastFlexRepeater"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.instances": {
+            "binding": {
+              "config": {
+                "path": "view.custom.toasts"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "direction": "column-reverse",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "elementStyle": {
+            "height": "fit-content"
+          },
+          "path": "Toast/Toast",
+          "style": {
+            "height": "fit-content",
+            "position": "fixed",
+            "right": "8px",
+            "top": "80px",
+            "transition-duration": "2s"
+          },
+          "useDefaultViewHeight": false
+        },
+        "scripts": {
+          "customMethods": [
+            {
+              "name": "hideMessage",
+              "params": [
+                "uuid"
+              ],
+              "script": "\t# implement your method here\n\tsize \u003d len(self.props.instances)\n\tif uuid:\n\t\tinstances \u003d []\n\t\tfor x in range(size):\n\t\t\tinstance \u003d \t{\n\t\t\t\t\t\t\t\u0027uuid\u0027: self.props.instances[x][\u0027uuid\u0027], \n\t\t\t\t\t\t\t\u0027messageType\u0027:self.props.instances[x][\u0027messageType\u0027],\n\t\t\t\t\t\t\t\u0027message\u0027:self.props.instances[x][\u0027message\u0027],\n\t\t\t\t\t\t\t\u0027new\u0027: 0\n\t\t\t\t\t\t}\n\n\t\t\tif self.props.instances[x][\u0027uuid\u0027] \u003d\u003d uuid:\n\t\t\t\t#hide\n\t\t\t\tinstance[\u0027messageType\u0027]\u003d\u0027\u0027\n\t\t\t\t\n\t\t\tinstances.append(instance)\n\t\tself.view.custom.toasts \u003d instances\n"
+            },
+            {
+              "name": "removeMessage",
+              "params": [
+                "uuid"
+              ],
+              "script": "\t# implement your method here\n\tsize \u003d len(self.props.instances)\n\tif uuid:\n\t\tinstances \u003d []\n\t\totherNotHide \u003d False\n\t\tfor x in range(size):\n\t\t\tif self.props.instances[x][\u0027uuid\u0027] !\u003d uuid:\n\t\t\t\tif self.props.instances[x][\u0027messageType\u0027] !\u003d \"\":\n\t\t\t\t\tinstances.append(self.props.instances[x])\n\t\t\t\tif self.props.instances[x][\u0027messageType\u0027] in [\"info\", \"success\", \"warning\"]:\n\t\t\t\t\totherNotHide \u003d True\n\t\t\n\t\tif otherNotHide \u003d\u003d False:\n\t\t\tself.view.custom.toasts \u003d instances"
+            }
+          ],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "TOAST_ADD",
+              "pageScope": true,
+              "script": "\n\timport uuid\n\tfrom threading import Timer\n\t\n\tif payload[\u0027messageType\u0027] and payload[\u0027message\u0027]:\n\t\tpayload[\u0027uuid\u0027] \u003d str(uuid.uuid1())\n\t\tpayload[\u0027new\u0027] \u003d 1\n\t\t\n\t\tself.view.custom.toasts.append(payload)\n\t\tself.refreshBinding(\"props.instances\")\n\t\tif payload[\u0027messageType\u0027] !\u003d \"error\":\n\t\t\tTimer(3.0, hideMessageTimer, [payload[\u0027uuid\u0027]], {\u0027self\u0027: self}).start()\n\t\t\t\ndef hideMessageTimer(uuid, self):\n\tfrom threading import Timer\n\tself.hideMessage(uuid)\n\tTimer(1.0, removeMessageTimer, [uuid], {\u0027self\u0027: self}).start()\n\t\ndef removeMessageTimer(uuid, self):\n\tself.removeMessage(uuid)",
+              "sessionScope": true,
+              "viewScope": false
+            },
+            {
+              "messageType": "TOAST_DELETE_BY_UUID",
+              "pageScope": true,
+              "script": "\t# implement your handler here\n\tfrom threading import Timer\n\t\n\tself.hideMessage(payload[\u0027uuid\u0027])\n\tTimer(1.0, removeMessageTimer, [payload[\u0027uuid\u0027]], {\u0027self\u0027: self}).start()\n\t\ndef removeMessageTimer(uuid, self):\n\tself.removeMessage(uuid)",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "classes": "toast toastContainer",
+        "height": "fit-content"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

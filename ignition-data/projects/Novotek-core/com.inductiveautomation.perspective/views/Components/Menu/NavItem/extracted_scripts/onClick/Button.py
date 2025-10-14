@@ -1,0 +1,1 @@
+	system.perspective.navigate(page = self.view.params.destination)

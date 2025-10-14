@@ -1,0 +1,1 @@
+	system.perspective.sendMessage("TOAST_DELETE_BY_UUID", payload = {"uuid": self.view.params.uuid})

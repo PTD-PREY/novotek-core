@@ -1,0 +1,214 @@
+{
+  "custom": {
+    "indicatorDisplay": true,
+    "isOpen": "False"
+  },
+  "params": {
+    "header": {
+      "icon": "novotek_icons/filter-3-line",
+      "isOpen": false,
+      "title": "Filter"
+    },
+    "panelPosition": {
+      "left": "0px",
+      "top": "80px"
+    },
+    "selected": [
+      "Category 1"
+    ],
+    "unselected": [
+      "Category 2",
+      "Category 3"
+    ]
+  },
+  "propConfig": {
+    "custom.indicatorDisplay": {
+      "binding": {
+        "config": {
+          "path": "view.params.unselected"
+        },
+        "transforms": [
+          {
+            "code": "\tif len(value) \u003e 0:\n\t\treturn True\n\telse:\n\t\treturn False",
+            "type": "script"
+          }
+        ],
+        "type": "property"
+      },
+      "persistent": true
+    },
+    "custom.isOpen": {
+      "persistent": true
+    },
+    "params.header": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.panelPosition": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.unselected": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 365,
+      "width": 501
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tif self.view.custom.isOpen:\n\t\tself.view.custom.isOpen \u003d False\n\telse:\n\t\tself.view.custom.isOpen \u003d True"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FilterBase"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.params.icon": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.icon"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.indicator.display": {
+            "binding": {
+              "config": {
+                "path": "view.custom.indicatorDisplay"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.isOpen": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.isOpen"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.title": {
+            "binding": {
+              "config": {
+                "path": "view.params.header.title"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "indicator": {
+              "icon": "novotek_icons/lightbulb-line"
+            }
+          },
+          "path": "Components/Filters/FilterBase"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "FilterPanel"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "position.display": {
+            "binding": {
+              "config": {
+                "path": "view.custom.isOpen"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.selected": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.unselected": {
+            "binding": {
+              "config": {
+                "path": "view.params.unselected"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.left": {
+            "binding": {
+              "config": {
+                "path": "view.params.panelPosition.left"
+              },
+              "type": "property"
+            }
+          },
+          "props.style.top": {
+            "binding": {
+              "config": {
+                "path": "view.params.panelPosition.top"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "path": "Components/Filters/Panel/CategoryPanel",
+          "style": {
+            "position": "fixed",
+            "zIndex": 99
+          },
+          "useDefaultViewWidth": true
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "position": "relative"
+      }
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "FilterCategoryClicked",
+          "pageScope": true,
+          "script": "\t# implement your handler here\n\tif payload[\u0027label\u0027] \u003d\u003d \"selectAll\":\n\t\tfor unselected in self.view.params.unselected:\n\t\t\tself.view.params.selected.append(unselected)\n\t\t\tself.view.params.unselected.remove(unselected)\n\telif payload[\u0027label\u0027] \u003d\u003d \"unselectAll\":\n\t\tfor selected in self.view.params.selected:\n\t\t\tself.view.params.unselected.append(selected)\n\t\t\tself.view.params.selected.remove(selected)\n\telse:\n\t\tif payload[\u0027selected\u0027]:\n\t\t\tself.view.params.unselected.append(payload[\u0027value\u0027])\n\t\t\tself.view.params.selected.remove(payload[\u0027value\u0027])\n\t\telse:\n\t\t\tself.view.params.selected.append(payload[\u0027value\u0027])\n\t\t\tself.view.params.unselected.remove(payload[\u0027value\u0027])\n\tsystem.perspective.print(self.view.params.selected)",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "--white",
+      "borderColor": "var(--error-400)"
+    }
+  }
+}

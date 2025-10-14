@@ -1,0 +1,147 @@
+{
+  "custom": {},
+  "params": {
+    "label": "Label",
+    "selected": false,
+    "value": "Label"
+  },
+  "propConfig": {
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 51,
+      "width": 206
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tpayloadSend \u003d {\n\t\t\u0027selected\u0027: self.view.params.selected,\n\t\t\u0027label\u0027: self.view.params.label,\n\t\t\u0027value\u0027: self.view.params.label\n\t}\n\t\n\tsystem.perspective.sendMessage(\"FilterCategoryClicked\", payload\u003dpayloadSend)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.image.icon.color": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": "var(--grey-500)",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "var(--secondary-500)"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.image.icon.path": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": "",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "novotek_icons/check-line"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "code": "\tif value :\n\t\treturn \"buttons/secondary_flat buttons/size/btn_txt_sm\"\n\telse:\n\t\treturn \"buttons/grey_flat buttons/size/btn_txt_sm\"",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.label"
+              },
+              "transforms": [
+                {
+                  "code": "\ttry:\n\t\treturn globalVars.BRIDLES[value][\"label\"] # If this is a bridle, go get it\u0027s translation from globalVars\n\texcept:\n\t\treturn value",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "image": {
+            "height": 20,
+            "icon": {},
+            "width": 20
+          },
+          "justify": "start",
+          "style": {},
+          "textStyle": {
+            "marginLeft": "8px"
+          }
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "style": {
+        "padding": "1px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

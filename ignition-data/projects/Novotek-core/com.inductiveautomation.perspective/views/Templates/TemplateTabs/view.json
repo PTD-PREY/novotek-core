@@ -1,0 +1,166 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 920,
+      "width": 1900
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "typo/heading_1 typo/weight/bold"
+              },
+              "text": "Template 2"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "time"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "expression": "dateFormat(now(), \"HH:mm\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_lg typo/weight/bold colors/text/primary900"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "padding": "24px 40px 0 40px"
+          },
+          "wrap": "wrap"
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "meta": {
+          "name": "TabContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.menuStyle.width": {
+            "binding": {
+              "config": {
+                "expression": "{this.props.tabSize.width}*len({this.props.tabs}) +4 "
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "contentStyle": {
+            "borderBottomStyle": "none",
+            "borderLeftStyle": "none",
+            "borderRightStyle": "none",
+            "borderTopStyle": "solid",
+            "classes": "colors/border/grey200 colors/back/background borders/borderTop",
+            "padding": "32px"
+          },
+          "menuStyle": {
+            "classes": "",
+            "padding": "0 40px"
+          },
+          "tabSize": {
+            "height": 44,
+            "width": 160
+          },
+          "tabs": [
+            {
+              "viewParams": {
+                "icon": "novotek_icons/apps-2-line",
+                "label": "Tabs #1",
+                "selected": false
+              },
+              "viewPath": "Components/TabsItem"
+            },
+            {
+              "viewParams": {
+                "icon": "novotek_icons/apps-2-line",
+                "label": "Tabs #2",
+                "selected": false
+              },
+              "viewPath": "Components/TabsItem"
+            },
+            {
+              "viewParams": {
+                "icon": "novotek_icons/apps-2-line",
+                "label": "Tabs #3",
+                "selected": false
+              },
+              "viewPath": "Components/TabsItem"
+            }
+          ]
+        },
+        "type": "ia.container.tab"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "struct": {
+              "path": "{page.props.path}",
+              "width": "{page.props.dimensions.viewport.width}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\tif value[\u0027width\u0027] \u003c 1000:\n\t\treturn \"container/page_tablet\"\n\telse:\n\t\treturn \"container/page_desktop\"",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": "32px",
+        "padding": 0
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "base": {
+    "style": {
+      "fontFamily": "Noto Sans",
+      "fontSize": "48px",
+      "lineHeight": "56px"
+    }
+  }
+}

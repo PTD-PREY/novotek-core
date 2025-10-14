@@ -1,0 +1,81 @@
+{
+  "custom": {},
+  "params": {
+    "data": ""
+  },
+  "propConfig": {
+    "params.data": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Table"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.data": {
+            "binding": {
+              "config": {
+                "path": "view.params.data"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "bodyStyle": {
+            "scrollbarWidth": "thin"
+          },
+          "cells": {
+            "style": {
+              "classes": "table/cells typo/text_md typo/weight/regular"
+            }
+          },
+          "emptyMessage": {
+            "style": {
+              "classes": "typo/text_md typo/weight/regular colors/text/grey500"
+            }
+          },
+          "footerGroupStyle": {
+            "classes": "table/table_header"
+          },
+          "footerStyle": {
+            "classes": "table/table_header"
+          },
+          "headerGroupStyle": {
+            "boxShadow": "none"
+          },
+          "headerStyle": {
+            "classes": "table/table_header typo/text_sm typo/weight/bold colors/text/black",
+            "padding": "16px 12px 4px 12px"
+          },
+          "pager": {
+            "style": {
+              "classes": "table/table_footer"
+            }
+          },
+          "style": {
+            "classes": "table/table",
+            "scrollbarColor": "var(--grey-300) var(--background)",
+            "scrollbarWidth": "thin"
+          }
+        },
+        "type": "ia.display.table"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

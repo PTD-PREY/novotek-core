@@ -1,0 +1,257 @@
+:root {
+    /* NOVOTEK */
+    --background: #FFFFFF;
+
+    --grey-50: #F5F6F7;
+    --grey-100: #ECEDF0;
+    --grey-200: #D9DBE0;
+    --grey-300: #B3B7C2;
+    --grey-400: #8C94A3;
+    --grey-500: #667085;
+    --grey-600: #525A6A;
+    --grey-700: #3D4350;
+    --grey-800: #292D35;
+    --grey-900: #1F2228;
+
+    --primary-50: #F3F3FE;
+    --primary-100: #E7E8FD;
+    --primary-200: #CFD1FC;
+    --primary-300: #9EA3F8;
+    --primary-400: #6E74F5;
+    --primary-500: #3D46F2;
+    --primary-600: #343DCA;
+    --primary-700: #2B34A1;
+    --primary-800: #222A79;
+    --primary-900: #192150;
+
+    --secondary-50: #FEFAF2;
+    --secondary-100: #FDF5E5;
+    --secondary-200: #FCEBCB;
+    --secondary-300: #F8D797;
+    --secondary-400: #F5C264;
+    --secondary-500: #F2AE30;
+    --secondary-600: #C5902E;
+    --secondary-700: #98722D;
+    --secondary-800: #6A542B;
+    --secondary-900: #3D362A;
+
+    --error-50: #FEF3F3;
+    --error-100: #FDE7E7;
+    --error-200: #FCCFCF;
+    --error-300: #F89E9E;
+    --error-400: #F56E6E;
+    --error-500: #F23D3D;
+    --error-600: #C53639;
+    --error-700: #982E35;
+    --error-800: #6A2730;
+    --error-900: #3D1F2C;
+
+    --alert-50: #FEF8F3;
+    --alert-100: #FDF2E7;
+    --alert-200: #FCE4CF;
+    --alert-300: #F8C99E;
+    --alert-400: #F5AF6E;
+    --alert-500: #F2943D;
+    --alert-600: #C57B39;
+    --alert-700: #986235;
+    --alert-800: #6A4A30;
+    --alert-900: #3D312C;
+
+    --warning-50: #3D312C;
+    --warning-100: #6A4A30;
+    --warning-200: #986235;
+    --warning-300: #C57B39;
+    --warning-400: #F2943D;
+    --warning-500: #F5AF6E;
+    --warning-600: #F8C99E;
+    --warning-700: #FCE4CF;
+    --warning-800: #FDF2E7;
+    --warning-900: #FEF8F3;
+
+    --success-50: #F6FCF2;
+    --success-100: #EDFAE6;
+    --success-200: #DBF4CC;
+    --success-300: #B8E999;
+    --success-400: #94DE67;
+    --success-500: #71D334;
+    --success-600: #5DAE32;
+    --success-700: #4A882F;
+    --success-800: #37632D;
+    --success-900: #233D2A;
+
+    /* Base */
+    --white: #FCFCFC;
+    --black: #313346;
+    --red-10: #FAF0F0;
+    --red-20: #661414;
+    --red-30: #8A2020;
+    --red-50: #F55353;
+    --red-60: #FA8E8E;
+
+    /* Neutrals */
+    --neutral-10: #FAFAFA;
+    --neutral-20: #F4F4F4;
+    --neutral-30: #D8D8D8;
+    --neutral-40: #BDBDBD;
+    --neutral-50: #A1A1A1;
+    --neutral-60: #767676;
+    --neutral-70: #5E5E5E;
+    --neutral-80: #515151;
+    --neutral-90: #323232;
+    --neutral-100: #161616;
+
+    /* Sequential */
+    --seq-1: #AE74E8; /* purple-50 */
+    --seq-2: #9659D6; /* purple-60 */
+    --seq-3: #7D3CBD; /* purple-70 */
+    --seq-4: #642B9E; /* purple-80 */
+    --seq-5: #4B2175; /* purple-90 */
+    --seq-6: #371C52; /* purple-100 */
+
+    /* Data Viz: Diverging */
+    --div-1: #642B9E; /* purple-80 */
+    --div-2: #7D3CBD; /* purple-70 */
+    --div-3: #9656D6; /* purple-60 */
+    --div-4: #AE74E8; /* purple-50 */
+    --div-5: #C79BF2; /* purple-40 */
+    --div-6: #DABCF7; /* purple-30 */
+    --div-7: #EAD9FA; /* purple-20 */
+    --div-8: #F5F0FA; /* purple-10 */
+    --div-9: #D7FAF8; /* teal-10 */
+    --div-10: #83F2EB; /* teal-20 */
+    --div-11: #43DED3; /* teal-30 */
+    --div-12: #21C2B7; /* teal-40 */
+    --div-13: #0EA197; /* teal-50 */
+    --div-14: #08827A; /* teal-60 */
+    --div-15: #086962; /* teal-70 */
+    --div-16: #09524D; /* teal-80 */
+
+
+    /* Data Viz: Qualitative */
+    --qual-1: #7D3CBD; /* purple-70 */
+    --qual-2: #229AD6; /* primary-50 */
+    --qual-3: #086962; /* teal-70 */
+    --qual-4: #B01355; /* magenta-70 */
+    --qual-5: var(--red-50); /* red-50 */
+    --qual-6: var(--red-90); /* red-90 */
+    --qual-7: #038537; /* green-60 */
+    --qual-8: #114599; /* blue-80 */
+    --qual-9: #ED5393; /* magenta-50 */
+    --qual-10: #CF7911; /* bronze-50 */
+
+    /* Data Viz: Qualitative */
+    --qual-1: #9656D6; /* purple-60 */
+    --qual-2: #53BAED; /* primary-40 */
+    --qual-3: #08827A; /* teal-60 */
+    --qual-4: #F78BB8; /* magenta-40 */
+    --qual-5: var(--red-50); /* red-50 */
+    --qual-6: var(--red-10); /* red-10 */
+    --qual-7: #46E385; /* green-30 */
+    --qual-8: #5691F0; /* blue-50 */
+    --qual-9: #ED5393; /* magenta-50 */
+    --qual-10: #E89C3F; /* bronze-40 */
+
+    --containerRoot: var(--neutral-10); /* the root container, depth 0 */
+    --container: var(--neutral-20); /* standard container, depth 1 */
+    --containerNested: var(--neutral-30); /* nested container, depth 2 */
+
+    --input: var(--black);
+    --input--disabled: var(--neutral-40);
+
+    --icon: var(--neutral-70);
+    --icon--hover: var(--neutral-60);
+    --icon--disabled: var(--neutral-40);
+    --icon--selected: var(--neutral-10);
+
+    --label: var(--neutral-90);
+    --label--disabled: var(--neutral-60);
+
+    /* Borders */
+    --border: var(--neutral-50);
+    --border--disabled: var(--neutral-50);
+    --containerBorder: 1px solid var(--border);
+
+    /* Box Shadow */
+    --boxShadow1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --boxShadow2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --boxShadow3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    --boxShadow4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    --boxShadow5: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    --boxShadow--inset: inset 0 0 4px 2px rgba(34, 34, 34, 0.4);
+
+    /* Call to action. */
+    --callToAction: #229AD6; /* primary-50 */
+    --callToActionHighlight: #0C2938; /* primary-100 */
+    --callToAction--hover: #0C7BB3; /* primary-60 */
+    --callToAction--active: #53BAED; /* primary-40 */
+    --callToAction--activeAlt: #093952; /* primary-20 */
+    --callToAction--activeAltInvis: #0A6291; /* primary-60 */
+    --callToAction--disabled: var(--neutral-50);
+
+    /* Functional */
+    --error: var(--red-50); /* red-50 */
+    --info: #5691F0; /* blue-50 */
+    --infoSecondary: #114599; /* blue-80 */
+    --warning: #CF7911; /* bronze-50 */
+    --warningSecondary: #693D07; /* bronze-80 */
+    --success: #0AA648; /* green-50 */
+
+    /* Border Radius */
+    --borderRadius: 4px;
+    --borderRadiusInput: 2px;
+
+    /* Opacity */
+    --opacity-25: rgba(0, 0, 0, 0.25); /* black, 50% opacity */
+    --opacity-50: rgba(0, 0, 0, 0.50); /* black, 50% opacity */
+    --opacity-85: rgba(0, 0, 0, 0.85); /* black, 85% opacity */
+
+    /* Typography */
+    --font-NotoSans: 'Noto Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    /* Components */
+    /* LED Display */
+    --indicator: #1EC963; /* green-40 */
+    --indicatorOff: #0A2E18; /* green-100 */
+
+    /* Checkbox */
+    --checkbox--checked: var(--callToAction);
+    --checkbox--unchecked: var(--border);
+    --checkbox--indeterminate: var(--callToAction);
+    --checkbox--disabled: var(--input--disabled);
+
+    /* Progress Bar */
+    --progressLinearTrack--determinate: var(--neutral-10);
+    --progressLinearTrack--indeterminate: var(--neutral-10);
+    --progressLinearBar--determinate: var(--infoSecondary);
+    --progressLinearBar--indeterminate: var(--border);
+
+    /* Toggle Switch */
+    --toggleSwitch--selected: var(--callToAction);
+    --toggleSwitch--unselected: var(--neutral-10);
+
+    /* Radio */
+    --radio--selected: var(--callToAction);
+    --radio--unselected: var(--border);
+    --radio--disabled: var(--input--disabled);
+
+    /* Piping */
+    --pipePrimaryFill: var(--neutral-20);
+    --pipeSecondaryFill: #5a5a5a;
+    --pipeStroke: var(--neutral-70);
+    --pipeSelectStroke: var(--callToAction);
+    
+    /* Component Context Menu */
+    --contextBackground: #FAFAFA;
+    
+    /* Symbols */
+    --symbolFill--default: var(--neutral-20);
+    --symbolStroke--default: var(--neutral-70);
+    --symbolFillAnimation--default: var(--neutral-80);
+    --symbolFill--running: var(--neutral-50);
+    --symbolFillAnimation--running: var(--neutral-80);
+    --symbolStroke--running: var(--neutral-70);
+    --symbolFill--stopped: var(--black);
+    --symbolStroke--stopped: var(--neutral-70);
+    --symbolFill--faulted: #8F0E0E;
+    --symbolStroke--faulted: #FA8E8E;
+}

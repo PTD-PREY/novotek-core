@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "var(--alert-300)",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "color": "var(--alert-700)"
+    }
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "custom": {},
+  "params": {
+    "data": {
+      "class": "site",
+      "name": "---",
+      "pathIcon": "novotek_icons/building-3-line",
+      "type": "Usine"
+    },
+    "selectionEnabled": false
+  },
+  "propConfig": {
+    "params.data": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selectionEnabled": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 73,
+      "width": 222
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Icon"
+            },
+            "position": {
+              "basis": "16px",
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.path": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.data.pathIcon"
+                  },
+                  "overlayOptOut": true,
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "marginRight": "4px",
+                "width": "16px"
+              }
+            },
+            "type": "ia.display.icon"
+          },
+          {
+            "meta": {
+              "name": "LabelType"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.data.type"
+                  },
+                  "overlayOptOut": true,
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_sm typo/weight/regular"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "expression": "if ({view.params.selectionEnabled}, \u0027colors/text/primary600\u0027, \u0027colors/text/grey600\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {}
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "propConfig": {
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.data.name"
+                  },
+                  "overlayOptOut": true,
+                  "type": "property"
+                },
+                "persistent": true
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_lg typo/weight/regular"
+              },
+              "text": "---"
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "FlexName"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "expression": "if ({view.params.selectionEnabled}, \u0027colors/text/primary700\u0027, \u0027colors/text/grey700\u0027)"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "gap": "8px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "flex-start",
+      "direction": "column",
+      "style": {
+        "position": "relative",
+        "zIndex": 1
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

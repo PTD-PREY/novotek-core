@@ -1,0 +1,39 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "transparent",
+      "borderStyle": "none",
+      "borderTopLeftRadius": "4px",
+      "borderTopRightRadius": "4px",
+      "borderBottomLeftRadius": "4px",
+      "borderBottomRightRadius": "4px",
+      "boxShadow": "0px",
+      "color": "var(--primary-500) !important",
+      "cursor": "auto"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "var(--primary-50)",
+        "boxShadow": "none !important",
+        "cursor": "pointer"
+      }
+    },
+    {
+      "pseudo": "active",
+      "style": {
+        "backgroundColor": "var(--primary-100)"
+      }
+    },
+    {
+      "pseudo": "disabled",
+      "style": {
+        "backgroundColor": "transparent",
+        "color": "var(--grey-400)",
+        "cursor": "auto"
+      }
+    }
+  ]
+}

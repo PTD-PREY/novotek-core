@@ -1,0 +1,40 @@
+[
+  {
+    "valueSource": "memory",
+    "dataType": "Document",
+    "name": "Navigation",
+    "defaultValue": {
+      "navigationOpen": [
+        {
+          "instances": [
+            {
+              "destination": "/",
+              "icon": "ptd_icons/home-2-line",
+              "iconOnly": false,
+              "label": "Home",
+              "notification": false
+            }
+          ],
+          "isOpen": true,
+          "name": ""
+        }
+      ],
+      "navigationClose": [
+        {
+          "instances": [
+            {
+              "destination": "/",
+              "icon": "ptd_icons/home-2-line",
+              "iconOnly": true,
+              "label": "Home",
+              "notification": false
+            }
+          ],
+          "isOpen": false,
+          "name": ""
+        }
+      ]
+    },
+    "tagType": "AtomicTag"
+  }
+]

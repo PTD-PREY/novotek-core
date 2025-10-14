@@ -1,0 +1,47 @@
+body {
+    font-family: var(--font-NotoSans);
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--label);
+    background-color: var(--containerRoot);
+    font-size: 100%;
+}
+
+input, textarea, keygen, select, button {
+    font-family: var(--font-NotoSans);
+    font-weight: 400;
+}
+
+input, textarea, select {
+    background-color: var(--background); 
+    color: var(--label);
+}
+
+:focus {
+    outline: 1px solid var(--callToAction--hover);
+}
+
+::selection {
+    background: var(--callToActionHighlight);
+    color: var(--label);
+}
+
+.docked-view.dock-cover-shadow-left {
+    box-shadow: none;
+}
+
+.docked-view.dock-cover-shadow-right {
+    box-shadow: none;
+}
+
+.ia_powerChartComponent__dateTimeSelection {
+    color: var(--primary-500) !important;
+}
+
+.ia_powerChartComponent {
+    border: 0px !important;
+}
+
+.iaDropdownCommon_options_modal{
+    background-color: var(--background) !important;
+}

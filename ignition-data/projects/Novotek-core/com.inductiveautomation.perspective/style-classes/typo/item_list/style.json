@@ -1,0 +1,29 @@
+{
+  "base": {
+    "style": {
+      "color": "#101828",
+      "fontFamily": "Helvetica",
+      "fontSize": "16px",
+      "fontWeight": "normal",
+      "lineHeight": "24px",
+      "padding": "4px 8px"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "#e2f2f7",
+        "color": "#147898",
+        "cursor": "pointer"
+      }
+    },
+    {
+      "pseudo": "focus",
+      "style": {
+        "backgroundColor": "#E2f2f7",
+        "color": "#147898"
+      }
+    }
+  ]
+}

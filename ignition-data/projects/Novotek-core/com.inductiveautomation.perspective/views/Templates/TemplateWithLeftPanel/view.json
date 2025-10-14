@@ -1,0 +1,346 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 920,
+      "width": 1900
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "back"
+                },
+                "position": {
+                  "basis": "40px",
+                  "shrink": 0
+                },
+                "props": {
+                  "image": {
+                    "icon": {
+                      "color": "var(--primary-900)",
+                      "path": "novotek_icons/arrow-left-line"
+                    }
+                  },
+                  "style": {
+                    "classes": "buttons/primary_blank",
+                    "height": "40px"
+                  },
+                  "text": ""
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "title"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "style": {
+                    "classes": "typo/heading_3 typo/weight/bold colors/text/primary900"
+                  },
+                  "text": "Titre"
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "alignItems": "center",
+              "style": {
+                "gap": "16px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "children": [
+              {
+                "meta": {
+                  "name": "Button"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "image": {
+                    "height": 20,
+                    "icon": {
+                      "color": "var(--primary-50)",
+                      "path": "novotek_icons/add-fill"
+                    },
+                    "width": 20
+                  },
+                  "style": {
+                    "classes": "buttons/primary_default buttons/size/btn_txt_md"
+                  },
+                  "text": "Action"
+                },
+                "type": "ia.input.button"
+              },
+              {
+                "meta": {
+                  "name": "time"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "propConfig": {
+                  "props.text": {
+                    "binding": {
+                      "config": {
+                        "expression": "dateFormat(now(), \"HH:mm\")"
+                      },
+                      "type": "expr"
+                    }
+                  }
+                },
+                "props": {
+                  "style": {
+                    "classes": "typo/text_lg typo/weight/bold colors/text/primary900"
+                  }
+                },
+                "type": "ia.display.label"
+              }
+            ],
+            "meta": {
+              "name": "FlexContainer_0"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "alignItems": "center",
+              "justify": "flex-end",
+              "style": {
+                "gap": "32px",
+                "overflow": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Flex_Header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "classes": "colors/back/background effects/shadows_md",
+            "padding": "16px 40px",
+            "zIndex": 99
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "events": {
+                      "dom": {
+                        "onClick": {
+                          "config": {
+                            "script": "\tif(self.parent.parent.parent.getChild(\"aside\").custom.isOpen):\n\t\tself.parent.parent.parent.getChild(\"aside\").custom.isOpen \u003d False\n\telse:\n\t\tself.parent.parent.parent.getChild(\"aside\").custom.isOpen \u003d True"
+                          },
+                          "scope": "G",
+                          "type": "script"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "name": "Button"
+                    },
+                    "position": {
+                      "shrink": 0
+                    },
+                    "propConfig": {
+                      "props.image.icon.path": {
+                        "binding": {
+                          "config": {
+                            "expression": "{..../aside.custom.isOpen}"
+                          },
+                          "transforms": [
+                            {
+                              "fallback": "novotek_icons/arrow-right-s-line",
+                              "inputType": "scalar",
+                              "mappings": [
+                                {
+                                  "input": true,
+                                  "output": "novotek_icons/arrow-left-s-line"
+                                },
+                                {
+                                  "input": false,
+                                  "output": "novotek_icons/arrow-right-s-line"
+                                }
+                              ],
+                              "outputType": "scalar",
+                              "type": "map"
+                            }
+                          ],
+                          "type": "expr"
+                        }
+                      }
+                    },
+                    "props": {
+                      "image": {
+                        "icon": {
+                          "color": "var(--label)"
+                        }
+                      },
+                      "style": {
+                        "classes": "buttons/primary_blank buttons/size/btn_icn_sm"
+                      },
+                      "text": ""
+                    },
+                    "type": "ia.input.button"
+                  }
+                ],
+                "meta": {
+                  "name": "Flex_Header"
+                },
+                "position": {
+                  "shrink": 0
+                },
+                "props": {
+                  "alignItems": "center",
+                  "justify": "flex-end",
+                  "style": {
+                    "overflow": "hidden",
+                    "padding": "1px"
+                  }
+                },
+                "type": "ia.container.flex"
+              }
+            ],
+            "custom": {
+              "isOpen": true
+            },
+            "meta": {
+              "name": "aside"
+            },
+            "propConfig": {
+              "props.style.padding": {
+                "binding": {
+                  "config": {
+                    "path": "this.custom.isOpen"
+                  },
+                  "transforms": [
+                    {
+                      "fallback": "8px 8px 8px 16px",
+                      "inputType": "scalar",
+                      "mappings": [
+                        {
+                          "input": false,
+                          "output": "8px"
+                        }
+                      ],
+                      "outputType": "scalar",
+                      "type": "map"
+                    }
+                  ],
+                  "type": "property"
+                }
+              },
+              "props.style.width": {
+                "binding": {
+                  "config": {
+                    "expression": "if({this.custom.isOpen} ,\"320px\" , \"48px\")"
+                  },
+                  "type": "expr"
+                }
+              }
+            },
+            "props": {
+              "direction": "column",
+              "style": {
+                "borderRight": "1px solid var(--grey-100)",
+                "gap": "16px",
+                "overflowX": "hidden"
+              }
+            },
+            "type": "ia.container.flex"
+          },
+          {
+            "meta": {
+              "name": "body"
+            },
+            "position": {
+              "grow": 1
+            },
+            "props": {
+              "direction": "column"
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "content"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "style": {
+            "gap": "24px",
+            "zIndex": 0
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.classes": {
+        "binding": {
+          "config": {
+            "struct": {
+              "path": "{page.props.path}",
+              "width": "{page.props.dimensions.viewport.width}"
+            },
+            "waitOnAll": true
+          },
+          "transforms": [
+            {
+              "code": "\tif value[\u0027width\u0027] \u003c 1000:\n\t\treturn \"container/page_tablet\"\n\telse:\n\t\treturn \"container/page_desktop\"",
+              "type": "script"
+            }
+          ],
+          "type": "expr-struct"
+        }
+      }
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "gap": 0,
+        "padding": 0
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

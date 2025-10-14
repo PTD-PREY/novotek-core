@@ -1,0 +1,21 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "fr.json",
+    "en.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "unknown",
+      "timestamp": "2025-10-14T08:48:25Z"
+    },
+    "ignorePunctuation": false,
+    "caseInsensitive": false,
+    "lastModificationSignature": "78e7dc1b531ab1ec1edd77f0ce6dcfe5cd72ff2b8154c3c112c6e01e046dc3f3",
+    "ignoreWhitespace": false,
+    "ignoreTags": false
+  }
+}

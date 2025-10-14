@@ -1,0 +1,12 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "--white",
+      "borderTopColor": "var(--secondary-300)",
+      "borderTopStyle": "solid",
+      "borderTopWidth": "2px",
+      "boxShadow": "none !important",
+      "color": "--black"
+    }
+  }
+}

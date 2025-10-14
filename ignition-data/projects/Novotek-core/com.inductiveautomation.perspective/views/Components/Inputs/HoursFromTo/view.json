@@ -1,0 +1,199 @@
+{
+  "custom": {},
+  "params": {
+    "fromTime": {
+      "$": [
+        "ts",
+        0,
+        1753271292541
+      ],
+      "$ts": 1753221600527
+    },
+    "id": 0,
+    "toTime": {
+      "$": [
+        "ts",
+        0,
+        1753271293778
+      ],
+      "$ts": 1753221600757
+    }
+  },
+  "propConfig": {
+    "params.fromTime": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.id": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.toTime": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 100,
+      "width": 600
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FromDate"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.fromTime"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "enabled": true,
+            "icon": "novotek_icons/time-line",
+            "isFrom": true,
+            "label": {
+              "display": false,
+              "value": ""
+            },
+            "message": {
+              "display": true,
+              "value": ""
+            },
+            "placeholder": "HH:mm"
+          },
+          "path": "Components/Inputs/Time"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "ArrowIcon"
+        },
+        "position": {
+          "basis": "16px",
+          "shrink": 0
+        },
+        "props": {
+          "path": "novotek_icons/arrow-right-line",
+          "style": {
+            "classes": "colors/text/grey500"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "ToDate"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.params.maxTime": {
+            "binding": {
+              "config": {
+                "path": "../FromDate.props.params.value"
+              },
+              "transforms": [
+                {
+                  "code": "\treturn system.date.setTime(value, 23, 59, 0)",
+                  "type": "script"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.params.minTime": {
+            "binding": {
+              "config": {
+                "path": "../FromDate.props.params.value"
+              },
+              "type": "property"
+            }
+          },
+          "props.params.value": {
+            "binding": {
+              "config": {
+                "bidirectional": true,
+                "path": "view.params.toTime"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "params": {
+            "enabled": true,
+            "icon": "novotek_icons/time-line",
+            "isTo": true,
+            "label": {
+              "display": false,
+              "value": ""
+            },
+            "message": {
+              "display": true,
+              "value": ""
+            },
+            "placeholder": "HH:mm"
+          },
+          "path": "Components/Inputs/Time"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "events": {
+          "dom": {
+            "onClick": {
+              "config": {
+                "script": "\tselected_id \u003d self.view.params.id\n\n\tsystem.perspective.sendMessage(\"DeleteTimeEntry\", payload\u003d{\"selected_id\": selected_id})"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Delete"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "image": {
+            "icon": {
+              "path": "novotek_icons/close-line"
+            }
+          },
+          "style": {
+            "classes": "buttons/error_blank"
+          },
+          "text": ""
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "style": {
+        "gap": "4px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

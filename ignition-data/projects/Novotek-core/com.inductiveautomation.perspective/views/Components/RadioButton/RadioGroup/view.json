@@ -1,0 +1,111 @@
+{
+  "custom": {
+    "instances": []
+  },
+  "params": {
+    "instances": [],
+    "radioGroupName": "",
+    "selected": ""
+  },
+  "propConfig": {
+    "custom.instances": {
+      "binding": {
+        "config": {
+          "struct": {
+            "items": "{view.params.instances}",
+            "radioGroupName": "{view.params.radioGroupName}",
+            "selected": "{view.params.selected}"
+          },
+          "waitOnAll": true
+        },
+        "transforms": [
+          {
+            "code": "\tbindValue \u003d []\n\tindex \u003d 0\n\t\n\tfor instance in value[\"items\"]:\n\t\titem \u003d {\n\t\t\t\"label\": instance[\"label\"],\n\t\t\t\"icon\": instance[\"icon\"],\n\t\t\t\"position\": \"middle\",\n\t\t\t\"selected\": False,\n\t\t\t\"radioGroupName\": value[\"radioGroupName\"]\n\t\t}\n\t\t\n\t\tif instance[\"label\"] \u003d\u003d value[\"selected\"]:\n\t\t\titem[\"selected\"] \u003d True\n\t\t\n\t\tif index \u003d\u003d 0:\n\t\t\titem[\"position\"] \u003d \"first\"\n\t\telif index \u003d\u003d (len(value[\"items\"])-1):\n\t\t\titem[\"position\"] \u003d \"last\"\n\t\n\t\tbindValue.append(item)\n\t\tindex \u003d index + 1\n\t\n\treturn bindValue",
+            "type": "script"
+          }
+        ],
+        "type": "expr-struct"
+      },
+      "persistent": true
+    },
+    "params.instances": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.radioGroupName": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 54
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "grow": 1,
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.elementPosition.basis": {
+            "binding": {
+              "config": {
+                "expression": "toStr(100 / len({this.props.instances})) + \"%\""
+              },
+              "type": "expr"
+            }
+          },
+          "props.instances": {
+            "binding": {
+              "config": {
+                "path": "view.custom.instances"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "alignItems": "center",
+          "elementPosition": {
+            "shrink": 0
+          },
+          "path": "Components/RadioButton/RadioItem",
+          "style": {
+            "classes": "borders/borderAll borders/radius4 colors/border/grey100 effects/shadows_sm",
+            "margin": "4px"
+          },
+          "useDefaultViewHeight": false,
+          "useDefaultViewWidth": false
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "scripts": {
+      "customMethods": [],
+      "extensionFunctions": null,
+      "messageHandlers": [
+        {
+          "messageType": "SelectRadioGroupInstance",
+          "pageScope": true,
+          "script": "\tif payload[\"radio_group_name\"] \u003d\u003d self.view.params.radioGroupName:\n\t\tself.view.params.selected \u003d payload[\"label\"]",
+          "sessionScope": false,
+          "viewScope": false
+        }
+      ]
+    },
+    "type": "ia.container.flex"
+  }
+}

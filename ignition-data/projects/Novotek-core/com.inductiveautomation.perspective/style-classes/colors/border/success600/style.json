@@ -1,0 +1,7 @@
+{
+  "base": {
+    "style": {
+      "borderColor": "var(--success-600)"
+    }
+  }
+}

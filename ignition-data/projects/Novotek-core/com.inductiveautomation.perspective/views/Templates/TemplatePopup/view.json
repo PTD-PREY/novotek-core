@@ -1,0 +1,206 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": "auto",
+      "width": 500
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Title"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_lg typo/weight/bold"
+              },
+              "text": "Label"
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "CloseButton"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "icon": {
+                  "color": "var(--primary-500)",
+                  "path": "novotek_icons/close-fill"
+                }
+              },
+              "style": {
+                "classes": "buttons/primary_blank buttons/size/btn_icn_sm"
+              },
+              "text": ""
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Header"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "padding": "24px 32px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_md typo/weight/regular"
+              },
+              "text": "Some content..."
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "Content"
+        },
+        "props": {
+          "direction": "column",
+          "style": {
+            "padding": "0 32px 24px 32px",
+            "scrollbarWidth": "thin"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "CancelButton"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "classes": "buttons/primary_blank buttons/size/btn_txt_md"
+              },
+              "text": "COMMON_CANCEL"
+            },
+            "type": "ia.input.button"
+          },
+          {
+            "events": {
+              "dom": {
+                "onClick": {
+                  "config": {
+                    "script": "\tsystem.perspective.closePopup(\u0027\u0027)"
+                  },
+                  "scope": "G",
+                  "type": "script"
+                }
+              }
+            },
+            "meta": {
+              "name": "SubmitButton"
+            },
+            "position": {
+              "grow": 1,
+              "shrink": 0
+            },
+            "props": {
+              "image": {
+                "height": 20,
+                "icon": {
+                  "path": "novotek_icons/check-line"
+                },
+                "width": 20
+              },
+              "style": {
+                "classes": "buttons/primary_default buttons/size/btn_txt_md"
+              },
+              "text": "COMMON_SUBMIT",
+              "textStyle": {
+                "marginLeft": "8px"
+              }
+            },
+            "type": "ia.input.button"
+          }
+        ],
+        "meta": {
+          "name": "Footer"
+        },
+        "position": {
+          "shrink": 0
+        },
+        "props": {
+          "alignItems": "center",
+          "justify": "space-between",
+          "style": {
+            "classes": "colors/border/grey100 borders/borderTop",
+            "gap": "24px",
+            "padding": "16px 32px"
+          }
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "borderRadius": "4px",
+        "classes": "colors/back/background",
+        "height": "fit-content",
+        "maxHeight": "600px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

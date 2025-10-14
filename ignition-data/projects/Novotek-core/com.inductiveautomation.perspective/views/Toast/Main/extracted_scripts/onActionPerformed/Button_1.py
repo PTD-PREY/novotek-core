@@ -1,0 +1,1 @@
+	system.perspective.sendMessage('TOAST_ADD', payload={"messageType":"warning", "message":  {"title": "I'm a <b>super title</b>", "description" : "Lorem ..." }})

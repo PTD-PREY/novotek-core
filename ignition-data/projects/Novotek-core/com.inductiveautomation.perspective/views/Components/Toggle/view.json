@@ -1,0 +1,249 @@
+{
+  "custom": {},
+  "params": {
+    "description": {
+      "display": true,
+      "value": "Description"
+    },
+    "enabled": true,
+    "label": {
+      "display": true,
+      "value": "Label"
+    },
+    "selected": true,
+    "selectedColor": "colors/back/primary500"
+  },
+  "propConfig": {
+    "params.description": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.enabled": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.label": {
+      "paramDirection": "input",
+      "persistent": true
+    },
+    "params.selected": {
+      "paramDirection": "inout",
+      "persistent": true
+    },
+    "params.selectedColor": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 80,
+      "width": 160
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Circle"
+            },
+            "position": {
+              "basis": "16px",
+              "shrink": 0
+            },
+            "props": {
+              "style": {
+                "borderRadius": "40px",
+                "classes": "colors/back/white effects/shadows_sm",
+                "height": "16px"
+              }
+            },
+            "type": "ia.container.flex"
+          }
+        ],
+        "meta": {
+          "name": "Toggle"
+        },
+        "position": {
+          "basis": "48px",
+          "shrink": 0
+        },
+        "propConfig": {
+          "props.justify": {
+            "binding": {
+              "config": {
+                "path": "view.params.selected"
+              },
+              "transforms": [
+                {
+                  "fallback": "flex-start",
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "flex-end"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.style.classes": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "color": "{view.params.selectedColor}",
+                  "selected": "{view.params.selected}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\treturn value[\"color\"] if value[\"selected\"] else \"colors/back/grey200\"",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          }
+        },
+        "props": {
+          "alignItems": "center",
+          "style": {
+            "borderRadius": "40px",
+            "padding": "4px"
+          }
+        },
+        "type": "ia.container.flex"
+      },
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "Label"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.label.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "typo/text_md typo/weight/regular"
+              }
+            },
+            "type": "ia.display.label"
+          },
+          {
+            "meta": {
+              "name": "Description"
+            },
+            "position": {
+              "shrink": 0
+            },
+            "propConfig": {
+              "position.display": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.description.display"
+                  },
+                  "type": "property"
+                }
+              },
+              "props.text": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.description.value"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "props": {
+              "style": {
+                "classes": "colors/text/grey500 typo/text_sm typo/weight/regular"
+              }
+            },
+            "type": "ia.display.label"
+          }
+        ],
+        "meta": {
+          "name": "TextSection"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "events": {
+      "dom": {
+        "onClick": {
+          "config": {
+            "script": "\tif self.view.params.enabled:\n\t\tif self.view.params.selected:\n\t\t\tself.view.params.selected \u003d False\n\t\telse:\n\t\t\tself.view.params.selected \u003d True"
+          },
+          "scope": "G",
+          "type": "script"
+        }
+      }
+    },
+    "meta": {
+      "name": "root"
+    },
+    "propConfig": {
+      "props.style.cursor": {
+        "binding": {
+          "config": {
+            "path": "view.params.enabled"
+          },
+          "transforms": [
+            {
+              "fallback": "not-allowed",
+              "inputType": "scalar",
+              "mappings": [
+                {
+                  "input": true,
+                  "output": "pointer"
+                }
+              ],
+              "outputType": "scalar",
+              "type": "map"
+            }
+          ],
+          "type": "property"
+        }
+      }
+    },
+    "props": {
+      "alignItems": "flex-start",
+      "style": {
+        "gap": "8px"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

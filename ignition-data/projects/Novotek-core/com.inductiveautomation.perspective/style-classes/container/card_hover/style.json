@@ -1,0 +1,16 @@
+{
+  "base": {
+    "style": {
+      "backgroundColor": "--white",
+      "cursor": "pointer"
+    }
+  },
+  "variants": [
+    {
+      "pseudo": "hover",
+      "style": {
+        "backgroundColor": "var(--primary-50)"
+      }
+    }
+  ]
+}

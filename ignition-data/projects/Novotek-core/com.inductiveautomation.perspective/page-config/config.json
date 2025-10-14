@@ -1,0 +1,57 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "Toast/Main"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom",
+    "left": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "cover",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "open_menu_desktop",
+        "modal": false,
+        "resizable": false,
+        "show": "onDemand",
+        "size": 228,
+        "viewParams": {},
+        "viewPath": "Components/Menu/Desktop/NavbarOpen"
+      },
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "cover",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "close_menu_desktop",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 64,
+        "viewParams": {},
+        "viewPath": "Components/Menu/Desktop/NavbarClose"
+      }
+    ],
+    "top": [
+      {
+        "anchor": "fixed",
+        "autoBreakpoint": 480,
+        "content": "push",
+        "handle": "hide",
+        "iconUrl": "",
+        "id": "",
+        "modal": false,
+        "resizable": false,
+        "show": "visible",
+        "size": 1,
+        "viewParams": {},
+        "viewPath": "Toast/Header"
+      }
+    ]
+  }
+}
