@@ -31,3 +31,19 @@ bld/
 
 # Ignition
 .resources/
+
+# Virtual env folders and files
+.env/
+.venv/
+env/
+venv/
+
+# Testing
+.pytest_cache/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
