@@ -37,6 +37,7 @@ jobs:
       - name: Pytest (Ignition Project Library)
         env:
           PYTHONPATH: ${{ github.workspace }}/${{ env.IGNITION_DIR }}
+          PYTEST_ADDOPTS: --import-mode=importlib
         run: |
           python -m pytest -v "${{ env.IGNITION_DIR }}/tests" \
             -o python_files='code.py' \
