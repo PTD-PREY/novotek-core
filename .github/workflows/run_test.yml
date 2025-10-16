@@ -4,9 +4,41 @@ on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write        # needed to publish the report
+      pull-requests: write # to comment/annotate
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
-      - name: Run Tests
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
         run: |
           pip install -r requirements.txt
-          python -m pytest
+          pip install pytest pytest-html pytest-cov
+
+      - name: Run tests with reports
+        run: |
+          mkdir -p reports
+          python -m pytest -v \
+            --junitxml=reports/pytest-junit.xml \
+            --html=reports/pytest-report.html --self-contained-html \
+            --cov=. --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports
+
+      # Publish a clean test summary with failure details into the PR UI
+      - name: Publish Unit Test Results
+        uses: dorny/test-reporter@v1
+        if: always()         # publish even if tests fail
+        with:
+          name: Pytest Results
+          path: reports/pytest-junit.xml
+          reporter: java-junit
