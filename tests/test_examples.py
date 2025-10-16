@@ -7,6 +7,9 @@ def subtract(a, b):
 def multiply(a, b):
     return a * b
 
+def divide(a, b):
+    return a / b
+
 def calculate_total(prices):
     return sum(prices)
 
@@ -19,6 +22,9 @@ def test_subtract():
 
 def test_multiply():
     assert multiply(2, 3) == 6
+    
+def test_divide():
+    assert divide(6, 3) == 2
 
 def test_calculate_total():
     items = [10, 20, 30, 40]
