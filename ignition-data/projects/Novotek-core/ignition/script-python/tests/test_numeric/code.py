@@ -1,4 +1,4 @@
-import numeric 
+import numeric
 
 def test_add():
     assert numeric.add(2, 3) == 5
