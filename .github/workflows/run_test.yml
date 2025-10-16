@@ -38,7 +38,9 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}/${{ env.IGNITION_DIR }}
         run: |
-          python -m pytest -v "${{ env.IGNITION_DIR }}" \
+          python -m pytest -v "${{ env.IGNITION_DIR }}/tests" \
+            -o python_files='code.py' \
+            -o python_functions='test_*' \
             --junitxml=reports/junit-ignition.xml \
             --html=reports/pytest-ignition.html --self-contained-html \
             --cov=. --cov-append
