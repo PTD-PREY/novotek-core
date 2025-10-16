@@ -5,12 +5,13 @@ jobs:
   test:
     runs-on: ubuntu-latest
     permissions:
-      checks: write        # needed to publish the report
-      pull-requests: write # to comment/annotate
+      checks: write
+      pull-requests: write
       contents: read
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -29,16 +30,31 @@ jobs:
             --cov=. --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html
 
       - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: reports
 
-      # Publish a clean test summary with failure details into the PR UI
-      - name: Publish Unit Test Results
-        uses: dorny/test-reporter@v1
-        if: always()         # publish even if tests fail
+      - name: Publish test results (PR comment)
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
         with:
-          name: Pytest Results
-          path: reports/pytest-junit.xml
-          reporter: java-junit
+          files: reports/pytest-junit.xml
+          check_name: "Pytest Results"
+          comment_mode: always
+          compare_to_earlier_commit: true
+
+      # OPTIONAL: keep if you want a second sticky comment with artifact pointers
+      - name: Make report summary with links
+        if: always()
+        run: |
+          echo "### 🔎 Test artifacts" > pr_comment.md
+          echo "- Pytest HTML: _Artifacts » test-reports » pytest-report.html_" >> pr_comment.md
+          echo "- Coverage site: _Artifacts » test-reports » coverage-html/index.html_" >> pr_comment.md
+
+      - name: Post/Update sticky PR comment
+        if: always()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: pr_comment.md
