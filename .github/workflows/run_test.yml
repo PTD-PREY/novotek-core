@@ -37,6 +37,7 @@ jobs:
       - name: Pytest (Ignition Project Library)
         env:
           PYTHONPATH: ${{ github.workspace }}/${{ env.IGNITION_DIR }}
+          PYTEST_ADDOPTS: --import-mode=importlib
         run: |
           python -m pytest -v "${{ env.IGNITION_DIR }}/tests" \
             -o python_files='code.py' \
@@ -59,12 +60,23 @@ jobs:
           path: reports
 
       # PR comment + Check with a table of ALL tests (passed/failed/skipped) from both runs
-      - name: Publish full test list to PR
+      - name: Publish Core tests to PR
         if: always()
         uses: mikepenz/action-junit-report@v5
         with:
-          report_paths: 'reports/junit-*.xml'   # <- picks up both core + ignition JUnit files
-          check_name: 'Pytest Results'
+          report_paths: 'reports/junit-core.xml'
+          check_name: 'Core Tests'
+          include_passed: true
+          detailed_summary: true
+          comment: true
+          update_check: true
+
+      - name: Publish Ignition tests to PR
+        if: always()
+        uses: mikepenz/action-junit-report@v5
+        with:
+          report_paths: 'reports/junit-ignition.xml'
+          check_name: 'Ignition Tests'
           include_passed: true
           detailed_summary: true
           comment: true
