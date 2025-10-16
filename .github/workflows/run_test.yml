@@ -4,9 +4,80 @@ on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+
+    env:
+      IGNITION_DIR: ignition-data/projects/Novotek-core/ignition/script-python
+
     steps:
       - uses: actions/checkout@v4
-      - name: Run Tests
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
         run: |
           pip install -r requirements.txt
-          python -m pytest
+          pip install pytest pytest-html pytest-cov coverage
+
+      # --- Run your "normal" tests (as before) ---
+      - name: Pytest (core repo)
+        run: |
+          mkdir -p reports
+          python -m pytest -v \
+            --junitxml=reports/junit-core.xml \
+            --html=reports/pytest-core.html --self-contained-html \
+            --cov=. --cov-append
+
+      # --- Run tests ONLY in the Ignition folder, with the proper PYTHONPATH ---
+      - name: Pytest (Ignition Project Library)
+        env:
+          PYTHONPATH: ${{ github.workspace }}/${{ env.IGNITION_DIR }}
+          PYTEST_ADDOPTS: --import-mode=importlib
+        run: |
+          python -m pytest -v "${{ env.IGNITION_DIR }}/tests" \
+            -o python_files='code.py' \
+            -o python_functions='test_*' \
+            --junitxml=reports/junit-ignition.xml \
+            --html=reports/pytest-ignition.html --self-contained-html \
+            --cov=. --cov-append
+
+      # Generate combined coverage reports (from both runs)
+      - name: Coverage reports (XML + HTML)
+        run: |
+          coverage xml -o reports/coverage.xml
+          coverage html -d reports/coverage-html
+
+      - name: Upload artifacts (all reports)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports
+
+      # PR comment + Check with a table of ALL tests (passed/failed/skipped) from both runs
+      - name: Publish Core tests to PR
+        if: always()
+        uses: mikepenz/action-junit-report@v5
+        with:
+          report_paths: 'reports/junit-core.xml'
+          check_name: 'Core Tests'
+          include_passed: true
+          detailed_summary: true
+          comment: true
+          update_check: true
+
+      - name: Publish Ignition tests to PR
+        if: always()
+        uses: mikepenz/action-junit-report@v5
+        with:
+          report_paths: 'reports/junit-ignition.xml'
+          check_name: 'Ignition Tests'
+          include_passed: true
+          detailed_summary: true
+          comment: true
+          update_check: true
