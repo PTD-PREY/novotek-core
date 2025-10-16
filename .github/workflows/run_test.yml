@@ -36,25 +36,14 @@ jobs:
           name: test-reports
           path: reports
 
-      - name: Publish test results (PR comment)
-        uses: EnricoMi/publish-unit-test-result-action@v2
+      # PR comment + Check with a table of ALL tests (passed/failed/skipped)
+      - name: Publish full test list to PR
         if: always()
+        uses: mikepenz/action-junit-report@v5
         with:
-          files: reports/pytest-junit.xml
-          check_name: "Pytest Results"
-          comment_mode: always
-          compare_to_earlier_commit: true
-
-      # OPTIONAL: keep if you want a second sticky comment with artifact pointers
-      - name: Make report summary with links
-        if: always()
-        run: |
-          echo "### 🔎 Test artifacts" > pr_comment.md
-          echo "- Pytest HTML: _Artifacts » test-reports » pytest-report.html_" >> pr_comment.md
-          echo "- Coverage site: _Artifacts » test-reports » coverage-html/index.html_" >> pr_comment.md
-
-      - name: Post/Update sticky PR comment
-        if: always()
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          path: pr_comment.md
+          report_paths: 'reports/pytest-junit.xml'
+          check_name: 'Pytest Results'
+          include_passed: true         # include ✅ tests in the tables
+          detailed_summary: true       # full table of all tests
+          comment: true                # post/maintain a PR comment
+          update_check: true           # robust update for large runs
