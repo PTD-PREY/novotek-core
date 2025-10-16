@@ -9,6 +9,9 @@ jobs:
       pull-requests: write
       contents: read
 
+    env:
+      IGNITION_DIR: ignition-data/projects/Novotek-core/ignition/script-python
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,31 +22,48 @@ jobs:
       - name: Install deps
         run: |
           pip install -r requirements.txt
-          pip install pytest pytest-html pytest-cov
+          pip install pytest pytest-html pytest-cov coverage
 
-      - name: Run tests with reports
+      # --- Run your "normal" tests (as before) ---
+      - name: Pytest (core repo)
         run: |
           mkdir -p reports
           python -m pytest -v \
-            --junitxml=reports/pytest-junit.xml \
-            --html=reports/pytest-report.html --self-contained-html \
-            --cov=. --cov-report=xml:reports/coverage.xml --cov-report=html:reports/coverage-html
+            --junitxml=reports/junit-core.xml \
+            --html=reports/pytest-core.html --self-contained-html \
+            --cov=. --cov-append
 
-      - name: Upload artifacts
+      # --- Run tests ONLY in the Ignition folder, with the proper PYTHONPATH ---
+      - name: Pytest (Ignition Project Library)
+        env:
+          PYTHONPATH: ${{ github.workspace }}/${{ env.IGNITION_DIR }}
+        run: |
+          python -m pytest -v "${{ env.IGNITION_DIR }}" \
+            --junitxml=reports/junit-ignition.xml \
+            --html=reports/pytest-ignition.html --self-contained-html \
+            --cov=. --cov-append
+
+      # Generate combined coverage reports (from both runs)
+      - name: Coverage reports (XML + HTML)
+        run: |
+          coverage xml -o reports/coverage.xml
+          coverage html -d reports/coverage-html
+
+      - name: Upload artifacts (all reports)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: reports
 
-      # PR comment + Check with a table of ALL tests (passed/failed/skipped)
+      # PR comment + Check with a table of ALL tests (passed/failed/skipped) from both runs
       - name: Publish full test list to PR
         if: always()
         uses: mikepenz/action-junit-report@v5
         with:
-          report_paths: 'reports/pytest-junit.xml'
+          report_paths: 'reports/junit-*.xml'   # <- picks up both core + ignition JUnit files
           check_name: 'Pytest Results'
-          include_passed: true         # include ✅ tests in the tables
-          detailed_summary: true       # full table of all tests
-          comment: true                # post/maintain a PR comment
-          update_check: true           # robust update for large runs
+          include_passed: true
+          detailed_summary: true
+          comment: true
+          update_check: true
